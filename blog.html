@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autosell.pe - Blog de Expertos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+        }
+
+        .article-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+
+        .category-btn.active {
+            background-color: #3b82f6;
+            color: white;
+        }
+    </style>
+</head>
+
+<body class="text-gray-800">
+
+    <!-- Contenedor Principal -->
+    <div class="w-full">
+
+        <!-- Header -->
+        <header class="bg-white/80 backdrop-blur-sm shadow-md sticky top-0 z-50">
+            <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+                <a href="/" class="text-2xl font-bold text-gray-900">
+                    Auto<span class="text-blue-600">sell</span>
+                </a>
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="/comprar.html" class="nav-link text-gray-700 hover:text-blue-600 font-medium">Comprar</a>
+                    <a href="/vender.html" class="nav-link text-gray-700 hover:text-blue-600 font-medium">Vender</a>
+                    <a href="/financiamiento.html"
+                        class="nav-link text-gray-700 hover:text-blue-600 font-medium">Financiamiento</a>
+                    <a href="/nosotros.html" class="nav-link text-gray-700 hover:text-blue-600 font-medium">Sobre Nosotros</a>
+                    <a href="/blog.html" class="nav-link text-blue-600 font-semibold border-b-2 border-blue-600">Blog</a>
+                </div>
+                <div class="hidden lg:flex items-center space-x-4">
+                    <a href="/contacto.html" class="text-gray-700 hover:text-blue-600 font-medium">Contacto</a>
+                    <a href="/login.html"
+                        class="bg-blue-600 text-white font-semibold px-5 py-2 rounded-lg hover:bg-blue-700 transition-colors">Iniciar
+                        Sesión</a>
+                </div>
+                <div class="lg:hidden">
+                    <button id="menu-btn" class="text-gray-700 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+            </nav>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden lg:hidden px-6 pb-4">
+                <a href="/comprar.html" class="block py-2 text-gray-700 hover:text-blue-600">Comprar</a>
+                <a href="/vender.html" class="block py-2 text-gray-700 hover:text-blue-600">Vender</a>
+                <a href="/financiamiento.html" class="block py-2 text-gray-700 hover:text-blue-600">Financiamiento</a>
+                <a href="/nosotros.html" class="block py-2 text-gray-700 hover:text-blue-600">Sobre Nosotros</a>
+                <a href="/blog.html" class="block py-2 text-gray-700 hover:text-blue-600">Blog</a>
+                <a href="/contacto.html" class="block py-2 text-gray-700 hover:text-blue-600">Contacto</a>
+                <a href="/login.html"
+                    class="block mt-2 bg-blue-600 text-white text-center font-semibold px-5 py-2 rounded-lg hover:bg-blue-700 transition-colors">Iniciar
+                    Sesión</a>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="bg-white">
+            <div class="container mx-auto px-6 py-16 md:py-24 text-center">
+                <h1 class="text-4xl md:text-6xl font-extrabold text-gray-900 animate-on-scroll">Consejos de Expertos
+                </h1>
+                <p class="text-lg md:text-xl text-gray-600 mt-4 max-w-3xl mx-auto animate-on-scroll" data-delay="100">Tu
+                    guía de confianza en el mundo de los autos de alta gama. Mantente informado con nuestros análisis,
+                    guías de compra y noticias del sector.</p>
+            </div>
+        </section>
+
+        <!-- Artículo Destacado -->
+        <section class="container mx-auto px-6 -mt-16">
+            <div class="relative rounded-2xl shadow-xl overflow-hidden group animate-on-scroll">
+                <img src="https://placehold.co/1280x600/374151/ffffff?text=Guía+de+Mantenimiento+BMW"
+                    alt="[Imagen de un motor de BMW]" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 p-8 md:p-12 text-white">
+                    <span class="bg-blue-600 text-xs font-bold px-3 py-1 rounded-full">MANTENIMIENTO</span>
+                    <h2 class="text-3xl md:text-4xl font-bold mt-4 max-w-2xl">5 cosas que debes revisar en un BMW
+                        seminuevo antes de comprar</h2>
+                    <p class="mt-2 text-gray-300 max-w-xl">Aprende a identificar los puntos clave para asegurar una
+                        compra inteligente y duradera. Te lo contamos todo.</p>
+                    <a href="#"
+                        class="mt-6 inline-block font-semibold text-white border-b-2 border-blue-400 hover:border-white transition-colors">Leer
+                        Artículo &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Artículos y Filtros -->
+        <section class="py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                <!-- Filtros y Búsqueda -->
+                <div class="flex flex-col md:flex-row justify-between items-center mb-12 animate-on-scroll">
+                    <div class="flex flex-wrap gap-2 mb-4 md:mb-0">
+                        <button
+                            class="category-btn px-4 py-2 font-semibold text-sm rounded-full transition-colors active">Todos</button>
+                        <button
+                            class="category-btn px-4 py-2 font-semibold text-sm rounded-full text-gray-600 bg-white hover:bg-gray-100 transition-colors">Guías
+                            de Compra</button>
+                        <button
+                            class="category-btn px-4 py-2 font-semibold text-sm rounded-full text-gray-600 bg-white hover:bg-gray-100 transition-colors">Mantenimiento</button>
+                        <button
+                            class="category-btn px-4 py-2 font-semibold text-sm rounded-full text-gray-600 bg-white hover:bg-gray-100 transition-colors">Finanzas</button>
+                    </div>
+                    <div class="relative w-full md:w-auto">
+                        <input type="text" placeholder="Buscar artículo..."
+                            class="w-full md:w-64 p-3 pl-10 border border-gray-300 rounded-full">
+                        <i data-lucide="search"
+                            class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"></i>
+                    </div>
+                </div>
+
+                <!-- Grilla de Artículos -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="article-card bg-white rounded-xl shadow-md overflow-hidden animate-on-scroll">
+                        <img src="https://placehold.co/600x400/64748b/ffffff?text=Comparativa+SUV"
+                            alt="[Imagen de dos SUVs]" class="w-full h-56 object-cover">
+                        <div class="p-6">
+                            <p class="text-sm text-blue-600 font-semibold mb-1">GUÍA DE COMPRA</p>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Audi Q5 vs. Volvo XC60: ¿Cuál es la mejor
+                                SUV de lujo para la familia?</h3>
+                            <p class="text-gray-600 mb-4 text-sm">Analizamos diseño, seguridad y rendimiento para
+                                ayudarte a decidir.</p><a href="#"
+                                class="font-semibold text-blue-600 hover:text-blue-800 text-sm">Leer más &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="article-card bg-white rounded-xl shadow-md overflow-hidden animate-on-scroll"
+                        data-delay="100">
+                        <img src="https://placehold.co/600x400/475569/ffffff?text=Financiamiento+Inteligente"
+                            alt="[Imagen de llaves de auto y documentos]" class="w-full h-56 object-cover">
+                        <div class="p-6">
+                            <p class="text-sm text-blue-600 font-semibold mb-1">FINANZAS</p>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Mitos y realidades del financiamiento
+                                vehicular en Perú</h3>
+                            <p class="text-gray-600 mb-4 text-sm">Desmentimos los mitos más comunes para que tomes la
+                                mejor decisión financiera.</p><a href="#"
+                                class="font-semibold text-blue-600 hover:text-blue-800 text-sm">Leer más &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="article-card bg-white rounded-xl shadow-md overflow-hidden animate-on-scroll"
+                        data-delay="200">
+                        <img src="https://placehold.co/600x400/1e293b/ffffff?text=Porsche+911"
+                            alt="[Imagen de un Porsche 911]" class="w-full h-56 object-cover">
+                        <div class="p-6">
+                            <p class="text-sm text-blue-600 font-semibold mb-1">MANTENIMIENTO</p>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">El costo real de mantener un Porsche en
+                                Perú</h3>
+                            <p class="text-gray-600 mb-4 text-sm">Más allá de la gasolina: una mirada honesta a los
+                                costos de propiedad.</p><a href="#"
+                                class="font-semibold text-blue-600 hover:text-blue-800 text-sm">Leer más &rarr;</a>
+                        </div>
+                    </div>
+                    <!-- Repetir más artículos -->
+                </div>
+
+                <!-- Paginación -->
+                <div class="mt-16 flex justify-center animate-on-scroll">
+                    <button
+                        class="bg-blue-600 text-white font-bold px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors">Cargar
+                        más artículos</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Suscripción -->
+        <section class="bg-white">
+            <div class="container mx-auto px-6 py-16">
+                <div class="bg-gray-800 text-white p-12 rounded-2xl text-center animate-on-scroll">
+                    <h2 class="text-3xl font-bold">Únete a la comunidad Autosell</h2>
+                    <p class="text-gray-300 mt-2 max-w-xl mx-auto">Recibe en tu correo las últimas novedades, guías
+                        exclusivas y las mejores ofertas de nuestro inventario.</p>
+                    <form class="mt-6 flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+                        <input type="email" placeholder="Tu correo electrónico"
+                            class="w-full p-3 rounded-lg text-gray-900" required>
+                        <button type="submit"
+                            class="bg-blue-600 font-semibold px-6 py-3 rounded-lg hover:bg-blue-700">Suscribirme</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+
+            // --- ANIMACIONES ---
+            const scrollElements = document.querySelectorAll('.animate-on-scroll');
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        anime({
+                            targets: entry.target,
+                            opacity: [0, 1],
+                            translateY: [20, 0],
+                            duration: 800,
+                            delay: entry.target.dataset.delay || 0,
+                            easing: 'easeOutExpo'
+                        });
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            scrollElements.forEach(el => observer.observe(el));
+
+            // --- Filtros de Categoría ---
+            const categoryBtns = document.querySelectorAll('.category-btn');
+            categoryBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    categoryBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    // Aquí iría la lógica para filtrar los artículos
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

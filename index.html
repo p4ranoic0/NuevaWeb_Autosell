@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autosell.pe - Rediseño de Página de Inicio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            /* gris claro */
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+        }
+
+        .hero-overlay {
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        .testimonial-card,
+        .vehicle-card-inner {
+            background-color: white;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .testimonial-card:hover,
+        .vehicle-card-inner:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #3b82f6;
+            /* azul */
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Estilos iniciales para elementos animados */
+        .animate-on-load,
+        .animate-on-scroll {
+            opacity: 0;
+        }
+
+        /* Efecto de luz del cursor */
+        #cursor-light {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.1), transparent 60%);
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s;
+            z-index: 9999;
+            display: none;
+            /* Oculto por defecto, se muestra con JS */
+        }
+
+        @media (min-width: 1024px) {
+            #cursor-light {
+                display: block;
+            }
+        }
+
+        /* Carrusel de logos */
+        .logo-carousel {
+            animation: scroll 40s linear infinite;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+    </style>
+</head>
+
+<body class="text-gray-800">
+
+    <div id="cursor-light"></div>
+
+    <!-- Contenedor Principal -->
+    <div class="w-full">
+
+        <!-- Header -->
+        <header class="bg-white/80 backdrop-blur-sm shadow-md sticky top-0 z-50">
+            <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+                <a href="/" class="text-2xl font-bold text-gray-900">
+                    Auto<span class="text-blue-600">sell</span>
+                </a>
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="/comprar.html" class="nav-link text-gray-700 hover:text-blue-600 font-medium">Comprar</a>
+                    <a href="/vender.html" class="nav-link text-gray-700 hover:text-blue-600 font-medium">Vender</a>
+                    <a href="/financiamiento.html" class="nav-link text-gray-700 hover:text-blue-600 font-medium">Financiamiento</a>
+                    <a href="/nosotros.html" class="nav-link text-gray-700 hover:text-blue-600 font-medium">Sobre Nosotros</a>
+                    <a href="/blog.html" class="nav-link text-gray-700 hover:text-blue-600 font-medium">Blog</a>
+                </div>
+                <div class="hidden lg:flex items-center space-x-4">
+                    <a href="/contacto.html" class="text-gray-700 hover:text-blue-600 font-medium">Contacto</a>
+                    <a href="/login.html"
+                        class="bg-blue-600 text-white font-semibold px-5 py-2 rounded-lg hover:bg-blue-700 transition-colors">Iniciar
+                        Sesión</a>
+                </div>
+                <div class="lg:hidden">
+                    <button id="menu-btn" class="text-gray-700 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+            </nav>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden lg:hidden px-6 pb-4">
+                <a href="/comprar.html" class="block py-2 text-gray-700 hover:text-blue-600">Comprar</a>
+                <a href="/vender.html" class="block py-2 text-gray-700 hover:text-blue-600">Vender</a>
+                <a href="/financiamiento.html" class="block py-2 text-gray-700 hover:text-blue-600">Financiamiento</a>
+                <a href="/nosotros.html" class="block py-2 text-gray-700 hover:text-blue-600">Sobre Nosotros</a>
+                <a href="/blog.html" class="block py-2 text-gray-700 hover:text-blue-600">Blog</a>
+                <a href="/contacto.html" class="block py-2 text-gray-700 hover:text-blue-600">Contacto</a>
+                <a href="/login.html"
+                    class="block mt-2 bg-blue-600 text-white text-center font-semibold px-5 py-2 rounded-lg hover:bg-blue-700 transition-colors">Iniciar
+                    Sesión</a>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section
+            class="relative h-[80vh] min-h-[500px] flex items-center justify-center text-white text-center overflow-hidden">
+            <video autoplay loop muted playsinline class="hero-video">
+                <source src="https://videos.pexels.com/video-files/4462930/4462930-hd_1920_1080_25fps.mp4"
+                    type="video/mp4">
+                Tu navegador no soporta videos HTML5.
+            </video>
+            <div class="absolute inset-0 hero-overlay"></div>
+            <div class="relative z-10 p-6">
+                <h1
+                    class="text-4xl md:text-6xl font-extrabold leading-tight mb-4 tracking-tight animate-on-load hero-title">
+                    El Lujo a tu Alcance. La Confianza que Mereces.</h1>
+                <p class="text-lg md:text-xl max-w-3xl mx-auto mb-8 text-gray-200 animate-on-load hero-subtitle">
+                    Descubre nuestra selección curada de vehículos seminuevos de alta gama. Compra, vende y financia con
+                    expertos que te respaldan.</p>
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4 animate-on-load hero-buttons">
+                    <a href="#"
+                        class="w-full sm:w-auto bg-blue-600 text-white font-bold px-8 py-4 rounded-lg text-lg hover:bg-blue-700 transition-all transform hover:scale-105 shadow-lg">Comprar
+                        un Auto</a>
+                    <a href="#"
+                        class="w-full sm:w-auto bg-white text-gray-900 font-bold px-8 py-4 rounded-lg text-lg hover:bg-gray-200 transition-all transform hover:scale-105 shadow-lg">Vender
+                        mi Auto</a>
+                    <a href="#"
+                        class="w-full sm:w-auto bg-transparent border-2 border-white text-white font-bold px-8 py-4 rounded-lg text-lg hover:bg-white hover:text-gray-900 transition-all transform hover:scale-105 shadow-lg">Obtener
+                        Financiamiento</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Marcas Destacadas -->
+        <section class="py-12 bg-white">
+            <div class="container mx-auto px-6">
+                <h3 class="text-center text-sm font-bold text-gray-500 uppercase tracking-widest mb-8">Marcas de Alta
+                    Gama con las que Trabajamos</h3>
+                <div
+                    class="w-full inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]">
+                    <div
+                        class="flex items-center justify-center md:justify-start [&_img]:max-h-12 logo-carousel space-x-16">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Mercedes-Benz_Logo_2010.svg/1200px-Mercedes-Benz_Logo_2010.svg.png"
+                            alt="Mercedes-Benz" />
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/BMW_logo_%28gray%29.svg/2048px-BMW_logo_%28gray%29.svg.png"
+                            alt="BMW" />
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Audi_logo_logotype.svg/1280px-Audi_logo_logotype.svg.png"
+                            alt="Audi" />
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Porsche_SS_Logo.svg/1200px-Porsche_SS_Logo.svg.png"
+                            alt="Porsche" />
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Land_Rover_logo_black.svg/1200px-Land_Rover_logo_black.svg.png"
+                            alt="Land Rover" />
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Volvo_logo.svg/2560px-Volvo_logo.svg.png"
+                            alt="Volvo" />
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Lexus_logo.svg/2560px-Lexus_logo.svg.png"
+                            alt="Lexus" />
+                    </div>
+                    <div class="flex items-center justify-center md:justify-start [&_img]:max-h-12 logo-carousel space-x-16"
+                        aria-hidden="true">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Mercedes-Benz_Logo_2010.svg/1200px-Mercedes-Benz_Logo_2010.svg.png"
+                            alt="Mercedes-Benz" />
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/BMW_logo_%28gray%29.svg/2048px-BMW_logo_%28gray%29.svg.png"
+                            alt="BMW" />
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Audi_logo_logotype.svg/1280px-Audi_logo_logotype.svg.png"
+                            alt="Audi" />
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Porsche_SS_Logo.svg/1200px-Porsche_SS_Logo.svg.png"
+                            alt="Porsche" />
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Land_Rover_logo_black.svg/1200px-Land_Rover_logo_black.svg.png"
+                            alt="Land Rover" />
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Volvo_logo.svg/2560px-Volvo_logo.svg.png"
+                            alt="Volvo" />
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Lexus_logo.svg/2560px-Lexus_logo.svg.png"
+                            alt="Lexus" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Llegadas Recientes -->
+        <section class="py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12 animate-on-scroll">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Llegadas Recientes</h2>
+                    <p class="text-lg text-gray-600 mt-2">Explora las últimas joyas que han llegado a nuestro showroom.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 stagger-container">
+                    <!-- Vehicle Card 1 -->
+                    <div class="relative group animate-on-scroll">
+                        <div class="vehicle-card-inner rounded-xl overflow-hidden">
+                            <img src="https://placehold.co/600x400/334155/ffffff?text=Audi+Q5"
+                                alt="[Imagen de un Audi Q5]" class="w-full h-56 object-cover">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold text-gray-900">Audi Q5 2.0 TFSI</h3>
+                                <p class="text-gray-600 font-medium">2022 | 15,000 km</p>
+                                <div class="mt-4 flex justify-between items-center">
+                                    <p class="text-2xl font-extrabold text-blue-600">$48,500</p>
+                                    <a href="#"
+                                        class="bg-gray-800 text-white font-semibold px-4 py-2 rounded-lg hover:bg-gray-900 transition-colors text-sm">Ver
+                                        Detalles</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl">
+                            <button
+                                class="quick-view-btn bg-white text-gray-900 font-bold px-6 py-3 rounded-lg flex items-center gap-2"
+                                data-id="1">
+                                <i data-lucide="eye" class="w-5 h-5"></i> Vista Rápida
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Vehicle Card 2 -->
+                    <div class="relative group animate-on-scroll">
+                        <div class="vehicle-card-inner rounded-xl overflow-hidden">
+                            <img src="https://placehold.co/600x400/1e293b/ffffff?text=BMW+X3"
+                                alt="[Imagen de un BMW X3]" class="w-full h-56 object-cover">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold text-gray-900">BMW X3 xDrive30i</h3>
+                                <p class="text-gray-600 font-medium">2021 | 22,000 km</p>
+                                <div class="mt-4 flex justify-between items-center">
+                                    <p class="text-2xl font-extrabold text-blue-600">$52,000</p>
+                                    <a href="#"
+                                        class="bg-gray-800 text-white font-semibold px-4 py-2 rounded-lg hover:bg-gray-900 transition-colors text-sm">Ver
+                                        Detalles</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl">
+                            <button
+                                class="quick-view-btn bg-white text-gray-900 font-bold px-6 py-3 rounded-lg flex items-center gap-2"
+                                data-id="2">
+                                <i data-lucide="eye" class="w-5 h-5"></i> Vista Rápida
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Vehicle Card 3 -->
+                    <div class="relative group animate-on-scroll">
+                        <div class="vehicle-card-inner rounded-xl overflow-hidden">
+                            <img src="https://placehold.co/600x400/0f172a/ffffff?text=Porsche+Macan"
+                                alt="[Imagen de un Porsche Macan]" class="w-full h-56 object-cover">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold text-gray-900">Porsche Macan S</h3>
+                                <p class="text-gray-600 font-medium">2020 | 30,000 km</p>
+                                <div class="mt-4 flex justify-between items-center">
+                                    <p class="text-2xl font-extrabold text-blue-600">$65,000</p>
+                                    <a href="#"
+                                        class="bg-gray-800 text-white font-semibold px-4 py-2 rounded-lg hover:bg-gray-900 transition-colors text-sm">Ver
+                                        Detalles</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl">
+                            <button
+                                class="quick-view-btn bg-white text-gray-900 font-bold px-6 py-3 rounded-lg flex items-center gap-2"
+                                data-id="3">
+                                <i data-lucide="eye" class="w-5 h-5"></i> Vista Rápida
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-12 animate-on-scroll">
+                    <a href="#"
+                        class="bg-blue-600 text-white font-bold px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors">Ver
+                        todo el inventario</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cómo Funciona -->
+        <section class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12 animate-on-scroll">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Tu Experiencia, Simplificada</h2>
+                    <p class="text-lg text-gray-600 mt-2">Comprar o vender tu auto nunca fue tan fácil y seguro.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center stagger-container">
+                    <!-- Step 1 -->
+                    <div class="p-6 animate-on-scroll">
+                        <div class="flex justify-center items-center mb-4">
+                            <div class="bg-blue-100 rounded-full p-4">
+                                <i data-lucide="search" class="w-10 h-10 text-blue-600"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">1. Explora y Elige</h3>
+                        <p class="text-gray-600">Navega nuestro inventario verificado. Cada auto cuenta con un informe
+                            completo para tu tranquilidad.</p>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="p-6 animate-on-scroll">
+                        <div class="flex justify-center items-center mb-4">
+                            <div class="bg-blue-100 rounded-full p-4">
+                                <i data-lucide="calendar-check" class="w-10 h-10 text-blue-600"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">2. Agenda una Cita</h3>
+                        <p class="text-gray-600">Coordina una prueba de manejo sin compromiso. Nuestro equipo de
+                            expertos te asesorará en cada paso.</p>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="p-6 animate-on-scroll">
+                        <div class="flex justify-center items-center mb-4">
+                            <div class="bg-blue-100 rounded-full p-4">
+                                <i data-lucide="key-round" class="w-10 h-10 text-blue-600"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">3. Disfruta tu Auto</h3>
+                        <p class="text-gray-600">Nos encargamos de todo el papeleo y el financiamiento. Tú solo
+                            preocúpate por disfrutar tu nuevo vehículo.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12 animate-on-scroll">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">La Confianza de Nuestros Clientes</h2>
+                    <p class="text-lg text-gray-600 mt-2">Esto es lo que dicen quienes ya vivieron la experiencia
+                        Autosell.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 stagger-container">
+                    <div class="testimonial-card p-8 rounded-xl animate-on-scroll">
+                        <div class="flex items-center mb-4">
+                            <img src="https://placehold.co/50x50/e2e8f0/334155?text=MA" alt="[Iniciales de María A.]"
+                                class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <p class="font-bold text-gray-900">María Andrade</p>
+                                <p class="text-sm text-gray-500">Compró un Mercedes-Benz C200</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700">"El proceso fue increíblemente transparente. Sandra me ayudó a
+                            encontrar el auto perfecto para mis necesidades. ¡Cero estrés! Totalmente recomendados."</p>
+                    </div>
+                    <div class="testimonial-card p-8 rounded-xl animate-on-scroll">
+                        <div class="flex items-center mb-4">
+                            <img src="https://placehold.co/50x50/e2e8f0/334155?text=JP" alt="[Iniciales de Juan P.]"
+                                class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <p class="font-bold text-gray-900">Juan Pérez</p>
+                                <p class="text-sm text-gray-500">Vendió su camioneta</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700">"Vendí mi camioneta en menos de 3 semanas y al precio que esperaba. Se
+                            encargaron de todo, solo fui a la notaría a firmar. Un servicio de primera."</p>
+                    </div>
+                    <div class="testimonial-card p-8 rounded-xl animate-on-scroll">
+                        <div class="flex items-center mb-4">
+                            <img src="https://placehold.co/50x50/e2e8f0/334155?text=LC" alt="[Iniciales de Laura C.]"
+                                class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <p class="font-bold text-gray-900">Laura Campos</p>
+                                <p class="text-sm text-gray-500">Financió un Audi A4</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700">"Pensé que el financiamiento sería complicado, pero el equipo de
+                            Autosell me consiguió una tasa excelente y gestionó todo con el banco. ¡Súper eficientes!"
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Section -->
+        <section class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12 animate-on-scroll">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Consejos de Nuestros Expertos</h2>
+                    <p class="text-lg text-gray-600 mt-2">Mantente informado con las últimas noticias y guías del mundo
+                        automotriz.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 stagger-container">
+                    <div class="bg-white rounded-xl overflow-hidden border border-gray-200 animate-on-scroll">
+                        <img src="https://placehold.co/600x400/94a3b8/ffffff?text=Guía+de+Mantenimiento"
+                            alt="[Imagen de un motor de auto]" class="w-full h-56 object-cover">
+                        <div class="p-6">
+                            <p class="text-sm text-blue-600 font-semibold mb-1">MANTENIMIENTO</p>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">5 cosas que debes revisar en un BMW
+                                seminuevo</h3>
+                            <p class="text-gray-600 mb-4">Aprende a identificar los puntos clave para asegurar una
+                                compra inteligente y duradera.</p>
+                            <a href="#" class="font-semibold text-blue-600 hover:text-blue-800">Leer más &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl overflow-hidden border border-gray-200 animate-on-scroll">
+                        <img src="https://placehold.co/600x400/64748b/ffffff?text=Comparativa+SUV"
+                            alt="[Imagen de dos SUVs]" class="w-full h-56 object-cover">
+                        <div class="p-6">
+                            <p class="text-sm text-blue-600 font-semibold mb-1">GUÍA DE COMPRA</p>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Audi Q5 vs. Volvo XC60: ¿Cuál es la mejor
+                                SUV de lujo para la familia?</h3>
+                            <p class="text-gray-600 mb-4">Analizamos diseño, seguridad y rendimiento para ayudarte a
+                                decidir.</p>
+                            <a href="#" class="font-semibold text-blue-600 hover:text-blue-800">Leer más &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl overflow-hidden border border-gray-200 animate-on-scroll">
+                        <img src="https://placehold.co/600x400/475569/ffffff?text=Financiamiento+Inteligente"
+                            alt="[Imagen de llaves de auto y documentos]" class="w-full h-56 object-cover">
+                        <div class="p-6">
+                            <p class="text-sm text-blue-600 font-semibold mb-1">FINANZAS</p>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Mitos y realidades del financiamiento
+                                vehicular en Perú</h3>
+                            <p class="text-gray-600 mb-4">Desmentimos los mitos más comunes para que tomes la mejor
+                                decisión financiera.</p>
+                            <a href="#" class="font-semibold text-blue-600 hover:text-blue-800">Leer más &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-gray-900 text-white">
+            <div class="container mx-auto px-6 py-12">
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
+                    <div class="col-span-2 lg:col-span-1">
+                        <h3 class="text-xl font-bold">Auto<span class="text-blue-500">sell</span></h3>
+                        <p class="mt-2 text-gray-400">Tu socio de confianza en vehículos de alta gama.</p>
+                        <div class="flex space-x-4 mt-4">
+                            <a href="#" class="text-gray-400 hover:text-white"><i data-lucide="instagram"></i></a>
+                            <a href="#" class="text-gray-400 hover:text-white"><i data-lucide="facebook"></i></a>
+                            <a href="#" class="text-gray-400 hover:text-white"><i data-lucide="youtube"></i></a>
+                            <a href="#" class="text-gray-400 hover:text-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="lucide lucide-music-4">
+                                    <path d="M9 18V5l12-2v13" />
+                                    <path d="m9 9 12-2" />
+                                    <circle cx="6" cy="18" r="3" />
+                                    <circle cx="18" cy="16" r="3" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold tracking-wider uppercase">Comprar</h4>
+                        <ul class="mt-4 space-y-2">
+                            <li><a href="#" class="text-gray-400 hover:text-white">Ver Inventario</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white">SUVs</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white">Sedanes</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white">Deportivos</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold tracking-wider uppercase">Vender</h4>
+                        <ul class="mt-4 space-y-2">
+                            <li><a href="#" class="text-gray-400 hover:text-white">Vende tu Auto</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white">¿Cómo funciona?</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white">Obtén una tasación</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold tracking-wider uppercase">Autosell</h4>
+                        <ul class="mt-4 space-y-2">
+                            <li><a href="#" class="text-gray-400 hover:text-white">Sobre Nosotros</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white">Nuestras Tiendas</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white">Contacto</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white">Blog</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold tracking-wider uppercase">Legal</h4>
+                        <ul class="mt-4 space-y-2">
+                            <li><a href="#" class="text-gray-400 hover:text-white">Términos y Condiciones</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white">Políticas de Privacidad</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white">Libro de Reclamaciones</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-12 border-t border-gray-800 pt-6 text-center text-gray-500">
+                    <p>&copy; 2024 Autosell (Jemmas S.A.C.). Todos los derechos reservados.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Quick View Modal -->
+    <div id="quick-view-modal"
+        class="fixed inset-0 bg-black bg-opacity-60 z-[100] hidden items-center justify-center p-4">
+        <div id="modal-content"
+            class="bg-white rounded-2xl w-full max-w-4xl max-h-[90vh] flex flex-col md:flex-row overflow-hidden opacity-0 translate-y-4">
+            <!-- El contenido se inyectará aquí con JS -->
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Lucide Icons Initialization ---
+            lucide.createIcons();
+
+            // --- Mobile Menu Toggle ---
+            const menuBtn = document.getElementById('menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (menuBtn && mobileMenu) {
+                menuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // --- Cursor Light Effect ---
+            const cursorLight = document.getElementById('cursor-light');
+            if (cursorLight && window.innerWidth >= 1024) { // Solo para escritorio
+                document.addEventListener('mousemove', (e) => {
+                    cursorLight.style.left = e.clientX + 'px';
+                    cursorLight.style.top = e.clientY + 'px';
+                });
+            }
+
+            // --- Anime.js Animations ---
+            // (La lógica de animación existente permanece igual)
+            const heroTimeline = anime.timeline({ easing: 'easeOutExpo', duration: 1000 });
+            heroTimeline.add({ targets: '.hero-title', opacity: [0, 1], translateY: [20, 0] }).add({ targets: '.hero-subtitle', opacity: [0, 1], translateY: [20, 0] }, '-=600').add({ targets: '.hero-buttons a', opacity: [0, 1], translateY: [20, 0], delay: anime.stagger(150) }, '-=600');
+            const scrollElements = document.querySelectorAll('.animate-on-scroll');
+            const staggerContainers = document.querySelectorAll('.stagger-container');
+            const observer = new IntersectionObserver((entries, observer) => { entries.forEach(entry => { if (entry.isIntersecting) { const isStaggerChild = Array.from(staggerContainers).some(container => container.contains(entry.target)); if (!isStaggerChild) { anime({ targets: entry.target, opacity: [0, 1], translateY: [20, 0], duration: 800, easing: 'easeOutExpo' }); } observer.unobserve(entry.target); } }); }, { threshold: 0.1 });
+            const staggerObserver = new IntersectionObserver((entries, observer) => { entries.forEach(entry => { if (entry.isIntersecting) { anime({ targets: entry.target.querySelectorAll('.animate-on-scroll'), opacity: [0, 1], translateY: [20, 0], delay: anime.stagger(120, { easing: 'easeOutQuad' }), duration: 700, easing: 'easeOutExpo' }); observer.unobserve(entry.target); } }); }, { threshold: 0.1 });
+            scrollElements.forEach(el => observer.observe(el));
+            staggerContainers.forEach(el => staggerObserver.observe(el));
+
+            // --- Quick View Modal Logic ---
+            const modal = document.getElementById('quick-view-modal');
+            const modalContent = document.getElementById('modal-content');
+            const quickViewBtns = document.querySelectorAll('.quick-view-btn');
+
+            // Datos de ejemplo para los vehículos
+            const vehicleData = {
+                '1': {
+                    name: 'Audi Q5 2.0 TFSI',
+                    year: 2022,
+                    mileage: '15,000 km',
+                    price: '$48,500',
+                    images: ['https://placehold.co/800x600/334155/ffffff?text=Audi+Q5+Frente', 'https://placehold.co/800x600/334155/ffffff?text=Audi+Q5+Interior', 'https://placehold.co/800x600/334155/ffffff?text=Audi+Q5+Atrás'],
+                    specs: [
+                        { icon: 'gauge-circle', label: 'Motor', value: '2.0L Turbo' },
+                        { icon: 'cog', label: 'Transmisión', value: 'Automática' },
+                        { icon: 'gas-pump', label: 'Combustible', value: 'Gasolina' },
+                        { icon: 'car-front', label: 'Tracción', value: 'Quattro (AWD)' },
+                    ]
+                },
+                '2': {
+                    name: 'BMW X3 xDrive30i',
+                    year: 2021,
+                    mileage: '22,000 km',
+                    price: '$52,000',
+                    images: ['https://placehold.co/800x600/1e293b/ffffff?text=BMW+X3+Frente', 'https://placehold.co/800x600/1e293b/ffffff?text=BMW+X3+Interior', 'https://placehold.co/800x600/1e293b/ffffff?text=BMW+X3+Atrás'],
+                    specs: [
+                        { icon: 'gauge-circle', label: 'Motor', value: '2.0L TwinPower Turbo' },
+                        { icon: 'cog', label: 'Transmisión', value: 'Automática' },
+                        { icon: 'gas-pump', label: 'Combustible', value: 'Gasolina' },
+                        { icon: 'car-front', label: 'Tracción', value: 'xDrive (AWD)' },
+                    ]
+                },
+                '3': {
+                    name: 'Porsche Macan S',
+                    year: 2020,
+                    mileage: '30,000 km',
+                    price: '$65,000',
+                    images: ['https://placehold.co/800x600/0f172a/ffffff?text=Porsche+Macan+Frente', 'https://placehold.co/800x600/0f172a/ffffff?text=Porsche+Macan+Interior', 'https://placehold.co/800x600/0f172a/ffffff?text=Porsche+Macan+Atrás'],
+                    specs: [
+                        { icon: 'gauge-circle', label: 'Motor', value: '3.0L V6 Turbo' },
+                        { icon: 'cog', label: 'Transmisión', value: 'PDK Automática' },
+                        { icon: 'gas-pump', label: 'Combustible', value: 'Gasolina' },
+                        { icon: 'car-front', label: 'Tracción', value: 'AWD' },
+                    ]
+                }
+            };
+
+            function openModal(id) {
+                const data = vehicleData[id];
+                if (!data) return;
+
+                let currentImageIndex = 0;
+
+                modalContent.innerHTML = `
+                    <div class="w-full md:w-1/2 h-64 md:h-auto relative">
+                        <img id="modal-main-image" src="${data.images[0]}" class="w-full h-full object-cover" alt="${data.name}">
+                        <div class="absolute bottom-4 left-4 flex space-x-2">
+                            ${data.images.map((img, index) => `<img src="${img}" class="w-16 h-12 object-cover rounded-md cursor-pointer border-2 ${index === 0 ? 'border-blue-500' : 'border-transparent'} modal-thumb" data-index="${index}">`).join('')}
+                        </div>
+                        <button id="modal-close-btn-inner" class="absolute top-4 right-4 bg-black/50 text-white rounded-full p-2 hover:bg-black/75"><i data-lucide="x" class="w-5 h-5"></i></button>
+                    </div>
+                    <div class="w-full md:w-1/2 p-8 flex flex-col overflow-y-auto">
+                        <h2 class="text-3xl font-bold text-gray-900">${data.name}</h2>
+                        <p class="text-lg text-gray-500 mt-1">${data.year} • ${data.mileage}</p>
+                        <p class="text-4xl font-extrabold text-blue-600 my-6">${data.price}</p>
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            ${data.specs.map(spec => `
+                                <div class="flex items-center gap-3">
+                                    <i data-lucide="${spec.icon}" class="w-6 h-6 text-blue-600"></i>
+                                    <div>
+                                        <p class="text-sm text-gray-500">${spec.label}</p>
+                                        <p class="font-semibold">${spec.value}</p>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <div class="mt-auto pt-6 border-t">
+                            <a href="#" class="w-full bg-blue-600 text-white font-bold py-3 rounded-lg text-center block hover:bg-blue-700">Ver Detalles Completos</a>
+                            <a href="#" class="w-full text-gray-700 font-bold py-3 rounded-lg text-center block mt-2 hover:bg-gray-100">Agendar una Cita</a>
+                        </div>
+                    </div>
+                `;
+                lucide.createIcons();
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                anime({ targets: modalContent, opacity: [0, 1], translateY: [16, 0], duration: 400, easing: 'easeOutCubic' });
+
+                // Add event listeners for modal content
+                document.getElementById('modal-close-btn-inner').addEventListener('click', closeModal);
+                document.querySelectorAll('.modal-thumb').forEach(thumb => {
+                    thumb.addEventListener('click', (e) => {
+                        const newIndex = parseInt(e.currentTarget.dataset.index);
+                        document.getElementById('modal-main-image').src = data.images[newIndex];
+                        document.querySelectorAll('.modal-thumb').forEach(t => t.classList.remove('border-blue-500'));
+                        e.currentTarget.classList.add('border-blue-500');
+                    });
+                });
+            }
+
+            function closeModal() {
+                anime({
+                    targets: modalContent,
+                    opacity: [1, 0],
+                    translateY: [0, 16],
+                    duration: 300,
+                    easing: 'easeInCubic',
+                    complete: () => {
+                        modal.classList.add('hidden');
+                        modal.classList.remove('flex');
+                        modalContent.innerHTML = '';
+                    }
+                });
+            }
+
+            quickViewBtns.forEach(btn => {
+                btn.addEventListener('click', () => openModal(btn.dataset.id));
+            });
+
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

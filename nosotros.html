@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autosell.pe - Sobre Nosotros</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+        }
+
+        .team-card-overlay {
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 60%);
+            transition: opacity 0.4s ease;
+        }
+
+        .team-card:hover .team-card-overlay {
+            opacity: 1;
+        }
+
+        .team-card .team-member-info {
+            transform: translateY(10px);
+            transition: transform 0.4s ease, opacity 0.4s ease;
+        }
+
+        .team-card:hover .team-member-info {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .modal-backdrop {
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+    </style>
+</head>
+
+<body class="text-gray-800">
+
+    <!-- Contenedor Principal -->
+    <div class="w-full">
+
+        <!-- Header -->
+        <header class="bg-white/80 backdrop-blur-sm shadow-md sticky top-0 z-50">
+            <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+                <a href="/" class="text-2xl font-bold text-gray-900">
+                    Auto<span class="text-blue-600">sell</span>
+                </a>
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="/comprar.html" class="nav-link text-gray-700 hover:text-blue-600 font-medium">Comprar</a>
+                    <a href="/vender.html" class="nav-link text-gray-700 hover:text-blue-600 font-medium">Vender</a>
+                    <a href="/financiamiento.html"
+                        class="nav-link text-gray-700 hover:text-blue-600 font-medium">Financiamiento</a>
+                    <a href="/nosotros.html" class="nav-link text-blue-600 font-semibold border-b-2 border-blue-600">Sobre Nosotros</a>
+                    <a href="/blog.html" class="nav-link text-gray-700 hover:text-blue-600 font-medium">Blog</a>
+                </div>
+                <div class="hidden lg:flex items-center space-x-4">
+                    <a href="/contacto.html" class="text-gray-700 hover:text-blue-600 font-medium">Contacto</a>
+                    <a href="/login.html"
+                        class="bg-blue-600 text-white font-semibold px-5 py-2 rounded-lg hover:bg-blue-700 transition-colors">Iniciar
+                        Sesión</a>
+                </div>
+                <div class="lg:hidden">
+                    <button id="menu-btn" class="text-gray-700 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+            </nav>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden lg:hidden px-6 pb-4">
+                <a href="/comprar.html" class="block py-2 text-gray-700 hover:text-blue-600">Comprar</a>
+                <a href="/vender.html" class="block py-2 text-gray-700 hover:text-blue-600">Vender</a>
+                <a href="/financiamiento.html" class="block py-2 text-gray-700 hover:text-blue-600">Financiamiento</a>
+                <a href="/nosotros.html" class="block py-2 text-gray-700 hover:text-blue-600">Sobre Nosotros</a>
+                <a href="/blog.html" class="block py-2 text-gray-700 hover:text-blue-600">Blog</a>
+                <a href="/contacto.html" class="block py-2 text-gray-700 hover:text-blue-600">Contacto</a>
+                <a href="/login.html"
+                    class="block mt-2 bg-blue-600 text-white text-center font-semibold px-5 py-2 rounded-lg hover:bg-blue-700 transition-colors">Iniciar
+                    Sesión</a>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="relative bg-gray-800 text-white">
+            <img src="https://placehold.co/1600x800/1f2937/475569?text=Nuestro+Showroom"
+                alt="[Imagen del showroom de Autosell]" class="absolute inset-0 w-full h-full object-cover opacity-30">
+            <div class="relative container mx-auto px-6 py-24 md:py-32 text-center">
+                <h1 class="text-4xl md:text-6xl font-extrabold">Más que autos, construimos relaciones de confianza.</h1>
+                <p class="text-lg md:text-xl text-gray-300 mt-4 max-w-3xl mx-auto">Somos un equipo de apasionados por
+                    los autos, dedicados a ofrecerte una experiencia de compra y venta transparente, segura y
+                    personalizada.</p>
+            </div>
+        </section>
+
+        <!-- Video Manifiesto -->
+        <section class="py-16 md:py-24">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 animate-on-scroll">Nuestra Pasión en
+                    Movimiento</h2>
+                <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto animate-on-scroll">Dale play y descubre por qué
+                    Autosell es diferente.</p>
+                <div
+                    class="relative max-w-4xl mx-auto rounded-2xl shadow-2xl overflow-hidden cursor-pointer group animate-on-scroll">
+                    <img src="https://placehold.co/1280x720/374151/ffffff?text=Video+Manifiesto+Autosell"
+                        alt="[Video manifiesto de Autosell]" class="w-full">
+                    <div class="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors"></div>
+                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                        <div
+                            class="bg-white/80 backdrop-blur-sm rounded-full p-5 text-blue-600 group-hover:scale-110 transition-transform">
+                            <i data-lucide="play" class="w-12 h-12 fill-current"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nuestra Historia -->
+        <section class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="animate-on-scroll"><img
+                            src="https://placehold.co/800x600/e0e7ff/374151?text=Fundador+de+Autosell"
+                            alt="[Imagen del fundador de Autosell]" class="rounded-2xl shadow-xl"></div>
+                    <div class="animate-on-scroll">
+                        <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Nuestra Historia</h2>
+                        <p class="text-lg text-gray-600 mt-4">Autosell nació en 2018 de una idea simple: el proceso de
+                            comprar o vender un auto de alta gama en Perú podía y debía ser mejor. Cansados de la
+                            informalidad, la falta de transparencia y los riesgos innecesarios, decidimos crear una
+                            alternativa centrada en la confianza.</p>
+                        <p class="text-lg text-gray-600 mt-4">Comenzamos con un pequeño local y un gran compromiso: cada
+                            vehículo en nuestro inventario sería inspeccionado rigurosamente y cada cliente recibiría
+                            una asesoría honesta y experta. Hoy, con dos locales y cientos de clientes satisfechos,
+                            mantenemos esa misma pasión por la excelencia que nos impulsó desde el primer día.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nuestros Números -->
+        <section class="py-16 md:py-24 bg-blue-600 text-white">
+            <div class="container mx-auto px-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                    <div class="animate-on-scroll">
+                        <p id="counter-clients" class="text-5xl font-extrabold">500</p>
+                        <p class="text-lg text-blue-200 mt-2">Clientes Satisfechos</p>
+                    </div>
+                    <div class="animate-on-scroll">
+                        <p id="counter-cars" class="text-5xl font-extrabold">350</p>
+                        <p class="text-lg text-blue-200 mt-2">Autos Vendidos con Éxito</p>
+                    </div>
+                    <div class="animate-on-scroll">
+                        <p id="counter-experience" class="text-5xl font-extrabold">6</p>
+                        <p class="text-lg text-blue-200 mt-2">Años de Experiencia</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nuestro Equipo -->
+        <section class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12 animate-on-scroll">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Conoce a los Expertos</h2>
+                    <p class="text-lg text-gray-600 mt-2">El equipo que hace posible la experiencia Autosell.</p>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+                    <div class="team-card relative rounded-xl overflow-hidden shadow-lg group animate-on-scroll cursor-pointer"
+                        data-member="jc">
+                        <img src="https://placehold.co/600x800/374151/ffffff?text=Juan+Carlos"
+                            alt="[Foto de Juan Carlos Vélez]" class="w-full h-full object-cover">
+                        <div class="team-card-overlay absolute inset-0"></div>
+                        <div class="team-member-info absolute bottom-0 left-0 p-6 text-white opacity-0">
+                            <h3 class="text-2xl font-bold">Juan Carlos Vélez</h3>
+                            <p class="text-blue-300 font-semibold">Fundador & CEO</p>
+                        </div>
+                    </div>
+                    <div class="team-card relative rounded-xl overflow-hidden shadow-lg group animate-on-scroll cursor-pointer"
+                        data-member="sandra">
+                        <img src="https://placehold.co/600x800/4b5563/ffffff?text=Sandra" alt="[Foto de Sandra Quiroga]"
+                            class="w-full h-full object-cover">
+                        <div class="team-card-overlay absolute inset-0"></div>
+                        <div class="team-member-info absolute bottom-0 left-0 p-6 text-white opacity-0">
+                            <h3 class="text-2xl font-bold">Sandra Quiroga</h3>
+                            <p class="text-blue-300 font-semibold">Jefa de Ventas y Asesoría</p>
+                        </div>
+                    </div>
+                    <div class="team-card relative rounded-xl overflow-hidden shadow-lg group animate-on-scroll cursor-pointer"
+                        data-member="miguel">
+                        <img src="https://placehold.co/600x800/52525b/ffffff?text=Miguel" alt="[Foto de Miguel Torres]"
+                            class="w-full h-full object-cover">
+                        <div class="team-card-overlay absolute inset-0"></div>
+                        <div class="team-member-info absolute bottom-0 left-0 p-6 text-white opacity-0">
+                            <h3 class="text-2xl font-bold">Miguel Torres</h3>
+                            <p class="text-blue-300 font-semibold">Jefe de Taller e Inspecciones</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nuestras Tiendas -->
+        <section class="py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12 animate-on-scroll">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Visítanos</h2>
+                    <p class="text-lg text-gray-600 mt-2">Te esperamos en nuestros locales para una atención
+                        personalizada.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden animate-on-scroll"><img
+                            src="https://placehold.co/800x500/64748b/ffffff?text=Tienda+Surco"
+                            alt="[Imagen de la tienda de Surco]" class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold">Sede Surco</h3>
+                            <p class="text-gray-600 mt-2 flex items-center gap-2"><i data-lucide="map-pin"
+                                    class="w-5 h-5 text-blue-500"></i> Av. El Polo 789, Santiago de Surco</p>
+                            <p class="text-gray-600 mt-2 flex items-center gap-2"><i data-lucide="clock"
+                                    class="w-5 h-5 text-blue-500"></i> Lunes a Sábado: 9:00 am - 7:00 pm</p><a href="#"
+                                class="mt-4 inline-block bg-blue-600 text-white font-semibold px-5 py-2 rounded-lg hover:bg-blue-700">Ver
+                                en Mapa</a>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden animate-on-scroll"><img
+                            src="https://placehold.co/800x500/94a3b8/ffffff?text=Tienda+San+Isidro"
+                            alt="[Imagen de la tienda de San Isidro]" class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold">Sede San Isidro</h3>
+                            <p class="text-gray-600 mt-2 flex items-center gap-2"><i data-lucide="map-pin"
+                                    class="w-5 h-5 text-blue-500"></i> Av. Pardo y Aliaga 550, San Isidro</p>
+                            <p class="text-gray-600 mt-2 flex items-center gap-2"><i data-lucide="clock"
+                                    class="w-5 h-5 text-blue-500"></i> Lunes a Viernes: 10:00 am - 8:00 pm</p><a
+                                href="#"
+                                class="mt-4 inline-block bg-blue-600 text-white font-semibold px-5 py-2 rounded-lg hover:bg-blue-700">Ver
+                                en Mapa</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Reclutamiento -->
+        <section class="py-16 md:py-24 bg-gray-800 text-white">
+            <div class="container mx-auto px-6 text-center animate-on-scroll">
+                <h2 class="text-3xl font-bold">¿Te apasionan los autos tanto como a nosotros?</h2>
+                <p class="text-lg text-gray-300 mt-2 max-w-2xl mx-auto">Siempre estamos buscando talento excepcional
+                    para unirse a nuestro equipo. Si crees que tienes lo que se necesita, nos encantaría saber de ti.
+                </p>
+                <a href="#"
+                    class="mt-6 inline-block bg-white text-gray-900 font-bold px-8 py-3 rounded-lg hover:bg-gray-200 transition-colors">Ver
+                    Oportunidades Laborales</a>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Modal Perfil de Equipo -->
+    <div id="team-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
+        <div id="team-modal-backdrop" class="modal-backdrop absolute inset-0"></div>
+        <div id="team-modal-content"
+            class="relative bg-white rounded-2xl w-full max-w-3xl max-h-[90vh] flex flex-col md:flex-row overflow-hidden opacity-0 translate-y-4">
+            <!-- Contenido se inyecta aquí -->
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+
+            // --- DATA ---
+            const teamData = {
+                'jc': {
+                    name: 'Juan Carlos Vélez',
+                    role: 'Fundador & CEO',
+                    image: 'https://placehold.co/600x800/374151/ffffff?text=Juan+Carlos',
+                    bio: 'Con más de 15 años de experiencia en el sector automotriz, Juan Carlos fundó Autosell con la visión de revolucionar el mercado de seminuevos de lujo en Perú. Su pasión por los autos y su obsesión por el detalle son el motor de nuestra empresa.',
+                    quote: 'Un auto es más que un medio de transporte, es una pieza de ingeniería y arte. Mi misión es que cada cliente sienta esa misma pasión.'
+                },
+                'sandra': {
+                    name: 'Sandra Quiroga',
+                    role: 'Jefa de Ventas y Asesoría',
+                    image: 'https://placehold.co/600x800/4b5563/ffffff?text=Sandra',
+                    bio: 'Sandra es el rostro amigable y experto que guía a nuestros clientes. Con un profundo conocimiento del mercado, su especialidad es entender las necesidades de cada persona para encontrar el vehículo perfecto que se ajuste a su estilo de vida.',
+                    quote: 'No vendo autos, ayudo a las personas a tomar una de las decisiones más emocionantes de su vida. La confianza es la clave.'
+                },
+                'miguel': {
+                    name: 'Miguel Torres',
+                    role: 'Jefe de Taller e Inspecciones',
+                    image: 'https://placehold.co/600x800/52525b/ffffff?text=Miguel',
+                    bio: 'Miguel es nuestro gurú técnico. Cada auto que ingresa a nuestro showroom pasa por sus manos expertas y nuestra rigurosa inspección de 150 puntos. Su aprobación es nuestro sello de calidad y tu garantía de tranquilidad.',
+                    quote: 'Si yo no manejaría este auto con mi familia, entonces no es un auto que venderemos en Autosell. Así de simple.'
+                }
+            };
+
+            // --- ANIMACIONES ---
+            const scrollElements = document.querySelectorAll('.animate-on-scroll');
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Check for counters
+                        if (entry.target.querySelector('#counter-clients')) {
+                            animateCounters();
+                        } else {
+                            anime({ targets: entry.target, opacity: [0, 1], translateY: [20, 0], duration: 800, delay: entry.target.dataset.delay || 0, easing: 'easeOutExpo' });
+                        }
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            scrollElements.forEach(el => observer.observe(el));
+
+            function animateCounters() {
+                const counters = { clients: 0, cars: 0, experience: 0 };
+                anime({
+                    targets: counters,
+                    clients: 500,
+                    cars: 350,
+                    experience: 6,
+                    round: 1,
+                    easing: 'easeOutCubic',
+                    duration: 2000,
+                    update: function () {
+                        document.getElementById('counter-clients').innerText = counters.clients.toLocaleString();
+                        document.getElementById('counter-cars').innerText = counters.cars.toLocaleString();
+                        document.getElementById('counter-experience').innerText = counters.experience.toLocaleString();
+                    }
+                });
+            }
+
+            // --- MODAL DE EQUIPO ---
+            const teamModal = document.getElementById('team-modal');
+            const teamModalContent = document.getElementById('team-modal-content');
+            const teamModalBackdrop = document.getElementById('team-modal-backdrop');
+
+            function openTeamModal(memberId) {
+                const data = teamData[memberId];
+                if (!data) return;
+
+                teamModalContent.innerHTML = `
+                <div class="w-full md:w-1/3 h-64 md:h-auto"><img src="${data.image}" class="w-full h-full object-cover"></div>
+                <div class="w-full md:w-2/3 p-8 flex flex-col">
+                    <h3 class="text-3xl font-bold">${data.name}</h3>
+                    <p class="text-blue-600 font-semibold text-lg">${data.role}</p>
+                    <p class="text-gray-600 my-4">${data.bio}</p>
+                    <blockquote class="mt-auto pt-4 border-t border-gray-200">
+                        <p class="italic text-gray-800">"${data.quote}"</p>
+                    </blockquote>
+                </div>
+                <button id="close-team-modal" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800"><i data-lucide="x" class="w-6 h-6"></i></button>
+            `;
+                lucide.createIcons();
+                teamModal.classList.remove('hidden');
+                teamModal.classList.add('flex');
+                anime({ targets: teamModalContent, opacity: [0, 1], translateY: [16, 0], duration: 400, easing: 'easeOutCubic' });
+                document.getElementById('close-team-modal').addEventListener('click', closeTeamModal);
+            }
+
+            function closeTeamModal() {
+                anime({
+                    targets: teamModalContent,
+                    opacity: 0,
+                    translateY: 16,
+                    duration: 300,
+                    easing: 'easeInCubic',
+                    complete: () => {
+                        teamModal.classList.add('hidden');
+                        teamModal.classList.remove('flex');
+                    }
+                });
+            }
+
+            document.querySelectorAll('.team-card').forEach(card => {
+                card.addEventListener('click', () => openTeamModal(card.dataset.member));
+            });
+            teamModalBackdrop.addEventListener('click', closeTeamModal);
+        });
+    </script>
+</body>
+
+</html>

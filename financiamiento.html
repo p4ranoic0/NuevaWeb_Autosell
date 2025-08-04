@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autosell.pe - Financiamiento a tu Medida</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+        }
+
+        .faq-item .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 200px;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        .faq-item .icon-rotate {
+            transition: transform 0.4s ease;
+        }
+
+        .faq-item.open .icon-rotate {
+            transform: rotate(45deg);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+
+<body class="text-gray-800">
+
+    <!-- Contenedor Principal -->
+    <div class="w-full">
+
+        <!-- Header -->
+        <header class="bg-white/80 backdrop-blur-sm shadow-md sticky top-0 z-50">
+            <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+                <a href="/" class="text-2xl font-bold text-gray-900">
+                    Auto<span class="text-blue-600">sell</span>
+                </a>
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="/comprar.html" class="nav-link text-gray-700 hover:text-blue-600 font-medium">Comprar</a>
+                    <a href="/vender.html" class="nav-link text-gray-700 hover:text-blue-600 font-medium">Vender</a>
+                    <a href="/financiamiento.html"
+                        class="nav-link text-blue-600 font-semibold border-b-2 border-blue-600">Financiamiento</a>
+                    <a href="/nosotros.html" class="nav-link text-gray-700 hover:text-blue-600 font-medium">Sobre Nosotros</a>
+                    <a href="/blog.html" class="nav-link text-gray-700 hover:text-blue-600 font-medium">Blog</a>
+                </div>
+                <div class="hidden lg:flex items-center space-x-4">
+                    <a href="/contacto.html" class="text-gray-700 hover:text-blue-600 font-medium">Contacto</a>
+                    <a href="/login.html"
+                        class="bg-blue-600 text-white font-semibold px-5 py-2 rounded-lg hover:bg-blue-700 transition-colors">Iniciar
+                        Sesión</a>
+                </div>
+                <div class="lg:hidden">
+                    <button id="menu-btn" class="text-gray-700 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+            </nav>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden lg:hidden px-6 pb-4">
+                <a href="/comprar.html" class="block py-2 text-gray-700 hover:text-blue-600">Comprar</a>
+                <a href="/vender.html" class="block py-2 text-gray-700 hover:text-blue-600">Vender</a>
+                <a href="/financiamiento.html" class="block py-2 text-gray-700 hover:text-blue-600">Financiamiento</a>
+                <a href="/nosotros.html" class="block py-2 text-gray-700 hover:text-blue-600">Sobre Nosotros</a>
+                <a href="/blog.html" class="block py-2 text-gray-700 hover:text-blue-600">Blog</a>
+                <a href="/contacto.html" class="block py-2 text-gray-700 hover:text-blue-600">Contacto</a>
+                <a href="/login.html"
+                    class="block mt-2 bg-blue-600 text-white text-center font-semibold px-5 py-2 rounded-lg hover:bg-blue-700 transition-colors">Iniciar
+                    Sesión</a>
+            </div>
+        </header>
+
+        <!-- Hero Section con Calculadora -->
+        <section class="bg-white">
+            <div class="container mx-auto px-6 py-16 md:py-24">
+                <div class="grid lg:grid-cols-5 gap-12 items-center">
+                    <div class="lg:col-span-2 animate-on-scroll">
+                        <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900">El auto de tus sueños, a tu
+                            alcance.</h1>
+                        <p class="text-lg md:text-xl text-gray-600 mt-4">Simula tu crédito vehicular en segundos y
+                            descubre lo fácil que es estrenar el auto de alta gama que siempre quisiste. Te asesoramos
+                            en cada paso.</p>
+                    </div>
+                    <div class="lg:col-span-3 bg-white p-8 rounded-2xl shadow-2xl border animate-on-scroll"
+                        data-delay="200">
+                        <h2 class="text-2xl font-bold mb-6 text-center">Simula tu Crédito Vehicular</h2>
+                        <div class="grid md:grid-cols-2 gap-8 items-center">
+                            <div class="space-y-4">
+                                <div>
+                                    <label for="car-price" class="block text-sm font-medium text-gray-700">Precio del
+                                        Vehículo (USD)</label>
+                                    <input type="number" id="car-price" value="48500"
+                                        class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm text-lg font-semibold">
+                                </div>
+                                <div>
+                                    <label for="down-payment-slider"
+                                        class="block text-sm font-medium text-gray-700">Cuota Inicial (<span
+                                            id="down-payment-percentage">20</span>%)</label>
+                                    <input type="range" id="down-payment-slider" min="10" max="50" value="20"
+                                        class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer mt-2">
+                                    <p id="down-payment-amount" class="text-center font-semibold mt-1 text-gray-800">
+                                        $9,700</p>
+                                </div>
+                                <div>
+                                    <label for="loan-term" class="block text-sm font-medium text-gray-700">Plazo</label>
+                                    <select id="loan-term"
+                                        class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm">
+                                        <option value="24">24 meses</option>
+                                        <option value="36" selected>36 meses</option>
+                                        <option value="48">48 meses</option>
+                                        <option value="60">60 meses</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="text-center bg-blue-50 p-4 rounded-lg">
+                                <p class="text-sm text-blue-800">Tu cuota mensual aproximada</p>
+                                <p id="monthly-payment" class="text-4xl font-extrabold text-blue-800 my-2">$1,250</p>
+                                <div class="h-48 w-full max-w-xs mx-auto"><canvas id="loan-chart"></canvas></div>
+                                <p id="total-payment-info" class="text-xs text-blue-600 mt-2">Pago total: $54,700</p>
+                            </div>
+                        </div>
+                        <a href="#precalificacion"
+                            class="mt-6 w-full block text-center bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors">Pre-califica
+                            ahora</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cómo Funciona -->
+        <section class="py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12 animate-on-scroll">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Un proceso simple y transparente</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center relative">
+                    <div class="hidden md:block absolute top-1/2 left-0 w-full h-px -translate-y-1/2"><svg width="100%"
+                            height="2">
+                            <line x1="0" y1="1" x2="100%" y2="1" stroke="#d1d5db" stroke-width="2"
+                                stroke-dasharray="8 8" />
+                        </svg></div>
+                    <div class="relative z-10 p-6 animate-on-scroll">
+                        <div class="flex justify-center items-center mb-4">
+                            <div class="bg-blue-100 rounded-full p-5"><i data-lucide="calculator"
+                                    class="w-12 h-12 text-blue-600"></i></div>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">1. Simula tu crédito</h3>
+                        <p class="text-gray-600">Usa nuestra calculadora para encontrar la cuota que se ajuste a tu
+                            presupuesto.</p>
+                    </div>
+                    <div class="relative z-10 p-6 animate-on-scroll" data-delay="200">
+                        <div class="flex justify-center items-center mb-4">
+                            <div class="bg-blue-100 rounded-full p-5"><i data-lucide="file-check-2"
+                                    class="w-12 h-12 text-blue-600"></i></div>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">2. Envía tus datos</h3>
+                        <p class="text-gray-600">Completa nuestro formulario de pre-calificación en línea. Es rápido y
+                            seguro.</p>
+                    </div>
+                    <div class="relative z-10 p-6 animate-on-scroll" data-delay="400">
+                        <div class="flex justify-center items-center mb-4">
+                            <div class="bg-blue-100 rounded-full p-5"><i data-lucide="check-circle"
+                                    class="w-12 h-12 text-blue-600"></i></div>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">3. Recibe la aprobación</h3>
+                        <p class="text-gray-600">Un asesor se contactará contigo con las mejores opciones de nuestros
+                            socios financieros.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conoce a tu Asesor -->
+        <section class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="animate-on-scroll"><img src="https://placehold.co/600x700/e0f2fe/0c4a6e?text=Sandra"
+                            alt="[Foto de Sandra, asesora financiera]"
+                            class="rounded-2xl shadow-xl w-full max-w-sm mx-auto"></div>
+                    <div class="animate-on-scroll">
+                        <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Conoce a tu Asesora</h2>
+                        <p class="text-lg text-gray-600 mt-4">Sandra Quiroga, nuestra especialista en financiamiento, te
+                            guiará personalmente para encontrar la mejor alternativa de crédito para ti. Su experiencia
+                            y dedicación aseguran un proceso claro, rápido y sin complicaciones.</p><a
+                            href="#precalificacion"
+                            class="mt-6 inline-block bg-blue-600 text-white font-bold px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors">Hablar
+                            con Sandra</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Formulario de Pre-calificación -->
+        <section id="precalificacion" class="py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12 animate-on-scroll">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Inicia tu Pre-calificación</h2>
+                    <p class="text-lg text-gray-600 mt-2">Completa este formulario y nos pondremos en contacto a la
+                        brevedad.</p>
+                </div>
+                <div class="max-w-2xl mx-auto bg-white p-8 rounded-2xl shadow-lg border animate-on-scroll">
+                    <form class="space-y-6">
+                        <div class="grid sm:grid-cols-2 gap-6">
+                            <div><label for="name" class="block text-sm font-medium text-gray-700">Nombre
+                                    Completo</label><input type="text" id="name"
+                                    class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm"></div>
+                            <div><label for="dni" class="block text-sm font-medium text-gray-700">DNI</label><input
+                                    type="text" id="dni"
+                                    class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm"></div>
+                        </div>
+                        <div class="grid sm:grid-cols-2 gap-6">
+                            <div><label for="email" class="block text-sm font-medium text-gray-700">Correo
+                                    Electrónico</label><input type="email" id="email"
+                                    class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm"></div>
+                            <div><label for="phone" class="block text-sm font-medium text-gray-700">Teléfono
+                                    (WhatsApp)</label><input type="tel" id="phone"
+                                    class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm"></div>
+                        </div>
+                        <div><button type="submit"
+                                class="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors">Enviar
+                                Solicitud</button></div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Socios Financieros -->
+        <section class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center animate-on-scroll">
+                    <h2 class="text-3xl font-bold text-gray-900">Trabajamos con los mejores</h2>
+                    <p class="text-lg text-gray-600 mt-2">Nuestras alianzas nos permiten ofrecerte las mejores tasas.
+                    </p>
+                </div>
+                <div class="mt-12 flex flex-wrap justify-center items-center gap-x-12 gap-y-8 animate-on-scroll"><img
+                        src="https://placehold.co/150x50/cccccc/888888?text=Banco+A" alt="[Logo de Banco A]"
+                        class="h-10 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all"><img
+                        src="https://placehold.co/150x50/cccccc/888888?text=Banco+B" alt="[Logo de Banco B]"
+                        class="h-10 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all"><img
+                        src="https://placehold.co/150x50/cccccc/888888?text=Financiera+C" alt="[Logo de Financiera C]"
+                        class="h-12 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all"><img
+                        src="https://placehold.co/150x50/cccccc/888888?text=Caja+D" alt="[Logo de Caja D]"
+                        class="h-9 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all"><img
+                        src="https://placehold.co/150x50/cccccc/888888?text=Banco+E" alt="[Logo de Banco E]"
+                        class="h-10 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all"></div>
+            </div>
+        </section>
+
+        <!-- Preguntas Frecuentes (FAQ) -->
+        <section class="py-16 md:py-24">
+            <div class="container mx-auto px-6 max-w-4xl">
+                <div class="text-center mb-12 animate-on-scroll">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Resolvemos tus Dudas</h2>
+                </div>
+                <div class="space-y-4 animate-on-scroll">
+                    <div class="faq-item bg-white rounded-lg border border-gray-200 overflow-hidden"><button
+                            class="faq-question w-full flex justify-between items-center text-left p-6 font-semibold text-lg"><span
+                                class="text-gray-900">¿Cuáles son los requisitos básicos?</span><i data-lucide="plus"
+                                class="w-6 h-6 text-blue-600 icon-rotate"></i></button>
+                        <div class="faq-answer px-6 text-gray-600">
+                            <p>Generalmente, necesitas ser mayor de edad, tener DNI vigente, demostrar un ingreso
+                                mensual sostenible y no tener un mal historial en las centrales de riesgo. Los
+                                requisitos exactos pueden variar según la entidad financiera.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item bg-white rounded-lg border border-gray-200 overflow-hidden"><button
+                            class="faq-question w-full flex justify-between items-center text-left p-6 font-semibold text-lg"><span
+                                class="text-gray-900">¿Qué es la TCEA?</span><i data-lucide="plus"
+                                class="w-6 h-6 text-blue-600 icon-rotate"></i></button>
+                        <div class="faq-answer px-6 text-gray-600">
+                            <p>La Tasa de Costo Efectivo Anual (TCEA) es el costo total de tu crédito. Incluye la tasa
+                                de interés anual, comisiones y otros gastos. Es el indicador más importante para
+                                comparar diferentes opciones de crédito.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item bg-white rounded-lg border border-gray-200 overflow-hidden"><button
+                            class="faq-question w-full flex justify-between items-center text-left p-6 font-semibold text-lg"><span
+                                class="text-gray-900">¿Cuánto tiempo tarda la aprobación?</span><i data-lucide="plus"
+                                class="w-6 h-6 text-blue-600 icon-rotate"></i></button>
+                        <div class="faq-answer px-6 text-gray-600">
+                            <p>Una vez que envías tu solicitud de pre-calificación, uno de nuestros asesores se pondrá
+                                en contacto contigo en menos de 24 horas hábiles. La aprobación final por parte de la
+                                entidad financiera suele tardar entre 24 y 72 horas, dependiendo de la complejidad del
+                                caso.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+
+            // --- ANIMACIONES ---
+            const scrollElements = document.querySelectorAll('.animate-on-scroll');
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        anime({
+                            targets: entry.target,
+                            opacity: [0, 1],
+                            translateY: [20, 0],
+                            duration: 800,
+                            delay: entry.target.dataset.delay || 0,
+                            easing: 'easeOutExpo'
+                        });
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            scrollElements.forEach(el => observer.observe(el));
+
+            // --- CALCULADORA DE FINANCIAMIENTO ---
+            const carPriceInput = document.getElementById('car-price');
+            const downPaymentSlider = document.getElementById('down-payment-slider');
+            const downPaymentPercentage = document.getElementById('down-payment-percentage');
+            const downPaymentAmount = document.getElementById('down-payment-amount');
+            const loanTermSelect = document.getElementById('loan-term');
+            const monthlyPaymentDisplay = document.getElementById('monthly-payment');
+            const totalPaymentInfo = document.getElementById('total-payment-info');
+            const loanChartCanvas = document.getElementById('loan-chart');
+            let loanChart;
+
+            function calculateAndRenderLoan() {
+                const price = parseFloat(carPriceInput.value) || 0;
+                const dpPercentage = parseInt(downPaymentSlider.value);
+                const termMonths = parseInt(loanTermSelect.value);
+                const annualRate = 0.185; // TCEA referencial del 18.5%
+
+                const downPayment = price * (dpPercentage / 100);
+                const loanAmount = price - downPayment;
+                const monthlyRate = annualRate / 12;
+
+                let monthlyPayment = 0;
+                if (monthlyRate > 0) {
+                    monthlyPayment = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, termMonths)) / (Math.pow(1 + monthlyRate, termMonths) - 1);
+                }
+
+                const totalPayment = (monthlyPayment * termMonths) + downPayment;
+                const totalInterest = (monthlyPayment * termMonths) - loanAmount;
+
+                downPaymentPercentage.textContent = dpPercentage;
+                downPaymentAmount.textContent = `$${downPayment.toLocaleString('en-US', { maximumFractionDigits: 0 })}`;
+                monthlyPaymentDisplay.textContent = `$${monthlyPayment.toLocaleString('en-US', { maximumFractionDigits: 0 })}`;
+                totalPaymentInfo.textContent = `Pago total: $${totalPayment.toLocaleString('en-US', { maximumFractionDigits: 0 })}`;
+
+                updateLoanChart(loanAmount, totalInterest);
+            }
+
+            function updateLoanChart(principal, interest) {
+                const data = {
+                    labels: ['Monto del Préstamo', 'Intereses Totales'],
+                    datasets: [{
+                        data: [principal, interest],
+                        backgroundColor: ['#3b82f6', '#a5d7e8'],
+                        borderColor: '#f8fafc',
+                        borderWidth: 4,
+                        hoverOffset: 4
+                    }]
+                };
+
+                if (loanChart) {
+                    loanChart.data = data;
+                    loanChart.update();
+                } else {
+                    loanChart = new Chart(loanChartCanvas, {
+                        type: 'doughnut',
+                        data: data,
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            cutout: '60%',
+                            plugins: {
+                                legend: {
+                                    position: 'bottom',
+                                    labels: {
+                                        boxWidth: 12,
+                                        padding: 15
+                                    }
+                                },
+                                tooltip: {
+                                    callbacks: {
+                                        label: function (context) {
+                                            let label = context.label || '';
+                                            if (label) {
+                                                label += ': ';
+                                            }
+                                            if (context.parsed !== null) {
+                                                label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(context.parsed);
+                                            }
+                                            return label;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+            }
+
+            [carPriceInput, downPaymentSlider, loanTermSelect].forEach(el => {
+                el.addEventListener('input', calculateAndRenderLoan);
+                el.addEventListener('change', calculateAndRenderLoan);
+            });
+
+            calculateAndRenderLoan(); // Initial calculation
+
+            // --- FAQ Accordion ---
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    const wasOpen = item.classList.contains('open');
+                    faqItems.forEach(i => i.classList.remove('open'));
+                    if (!wasOpen) {
+                        item.classList.add('open');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

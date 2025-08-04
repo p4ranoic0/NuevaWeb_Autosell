@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autosell.pe - Vende tu Auto</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+
+        .step-content {
+            display: none;
+        }
+
+        .step-content.active {
+            display: block;
+        }
+
+        .progress-bar-fill {
+            transition: width 0.5s ease-in-out;
+        }
+
+        .photo-slot {
+            border: 2px dashed #d1d5db;
+            transition: border-color 0.3s, background-color 0.3s;
+        }
+
+        .photo-slot.dragging {
+            border-color: #3b82f6;
+            background-color: #eff6ff;
+        }
+
+        .photo-slot img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+
+<body class="text-gray-800">
+
+    <!-- Contenedor Principal -->
+    <div class="w-full">
+
+        <!-- Header -->
+        <header class="bg-white/80 backdrop-blur-sm shadow-md sticky top-0 z-50">
+            <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+                <a href="/" class="text-2xl font-bold text-gray-900">
+                    Auto<span class="text-blue-600">sell</span>
+                </a>
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="/comprar.html" class="nav-link text-gray-700 hover:text-blue-600 font-medium">Comprar</a>
+                    <a href="/vender.html" class="nav-link text-blue-600 font-semibold border-b-2 border-blue-600">Vender</a>
+                    <a href="/financiamiento.html"
+                        class="nav-link text-gray-700 hover:text-blue-600 font-medium">Financiamiento</a>
+                    <a href="/nosotros.html" class="nav-link text-gray-700 hover:text-blue-600 font-medium">Sobre Nosotros</a>
+                    <a href="/blog.html" class="nav-link text-gray-700 hover:text-blue-600 font-medium">Blog</a>
+                </div>
+                <div class="hidden lg:flex items-center space-x-4">
+                    <a href="/contacto.html" class="text-gray-700 hover:text-blue-600 font-medium">Contacto</a>
+                    <a href="/login.html"
+                        class="bg-blue-600 text-white font-semibold px-5 py-2 rounded-lg hover:bg-blue-700 transition-colors">Iniciar
+                        Sesión</a>
+                </div>
+                <div class="lg:hidden">
+                    <button id="menu-btn" class="text-gray-700 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+            </nav>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden lg:hidden px-6 pb-4">
+                <a href="/comprar.html" class="block py-2 text-gray-700 hover:text-blue-600">Comprar</a>
+                <a href="/vender.html" class="block py-2 text-gray-700 hover:text-blue-600">Vender</a>
+                <a href="/financiamiento.html" class="block py-2 text-gray-700 hover:text-blue-600">Financiamiento</a>
+                <a href="/nosotros.html" class="block py-2 text-gray-700 hover:text-blue-600">Sobre Nosotros</a>
+                <a href="/blog.html" class="block py-2 text-gray-700 hover:text-blue-600">Blog</a>
+                <a href="/contacto.html" class="block py-2 text-gray-700 hover:text-blue-600">Contacto</a>
+                <a href="/login.html"
+                    class="block mt-2 bg-blue-600 text-white text-center font-semibold px-5 py-2 rounded-lg hover:bg-blue-700 transition-colors">Iniciar
+                    Sesión</a>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="bg-white">
+            <div class="container mx-auto px-6 py-16 md:py-24 text-center">
+                <h1 class="text-4xl md:text-6xl font-extrabold text-gray-900">Vende tu auto rápido, seguro y al mejor
+                    precio.</h1>
+                <p class="text-lg md:text-xl text-gray-600 mt-4 max-w-3xl mx-auto">Nos encargamos de todo el proceso
+                    para que tú no te preocupes por nada. Recibe una valoración justa y una oferta en menos de 24 horas.
+                </p>
+                <a href="#valuation-tool"
+                    class="mt-8 inline-block bg-blue-600 text-white font-bold px-8 py-4 rounded-lg text-lg hover:bg-blue-700 transition-all transform hover:scale-105 shadow-lg">Obtener
+                    mi valoración ahora</a>
+            </div>
+        </section>
+
+        <!-- Cómo Funciona -->
+        <section class="py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Un proceso simple en 3 pasos</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center relative">
+                    <!-- Línea conectora -->
+                    <div class="hidden md:block absolute top-1/2 left-0 w-full h-px -translate-y-1/2">
+                        <svg width="100%" height="2">
+                            <line x1="0" y1="1" x2="100%" y2="1" stroke="#d1d5db" stroke-width="2"
+                                stroke-dasharray="8 8" />
+                        </svg>
+                    </div>
+                    <div class="relative z-10 p-6">
+                        <div class="flex justify-center items-center mb-4">
+                            <div class="bg-blue-100 rounded-full p-5"><i data-lucide="calculator"
+                                    class="w-12 h-12 text-blue-600"></i></div>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">1. Obtén tu valoración</h3>
+                        <p class="text-gray-600">Ingresa los datos de tu auto en nuestra herramienta online y recibe una
+                            estimación de precio al instante.</p>
+                    </div>
+                    <div class="relative z-10 p-6">
+                        <div class="flex justify-center items-center mb-4">
+                            <div class="bg-blue-100 rounded-full p-5"><i data-lucide="search-check"
+                                    class="w-12 h-12 text-blue-600"></i></div>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">2. Agenda una inspección</h3>
+                        <p class="text-gray-600">Uno de nuestros expertos revisará tu vehículo (a domicilio o en nuestra
+                            tienda) para confirmar su estado.</p>
+                    </div>
+                    <div class="relative z-10 p-6">
+                        <div class="flex justify-center items-center mb-4">
+                            <div class="bg-blue-100 rounded-full p-5"><i data-lucide="handshake"
+                                    class="w-12 h-12 text-blue-600"></i></div>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">3. Recibe tu pago</h3>
+                        <p class="text-gray-600">Si estás de acuerdo con nuestra oferta final, nos encargamos del
+                            papeleo y recibes tu dinero de forma segura.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Herramienta de Valoración y Venta -->
+        <section id="valuation-tool" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="max-w-4xl mx-auto bg-white p-8 rounded-2xl shadow-2xl border">
+                    <!-- Progress Bar -->
+                    <div class="mb-8">
+                        <div class="relative h-2 bg-gray-200 rounded-full">
+                            <div id="progress-bar"
+                                class="absolute top-0 left-0 h-2 bg-blue-600 rounded-full progress-bar-fill"
+                                style="width: 25%;"></div>
+                        </div>
+                        <div class="flex justify-between text-sm mt-2 font-medium text-gray-600">
+                            <span>Vehículo</span>
+                            <span>Condición y Fotos</span>
+                            <span>Contacto</span>
+                            <span>Finalizar</span>
+                        </div>
+                    </div>
+
+                    <!-- Step 1: Datos del Vehículo -->
+                    <div id="step-1" class="step-content active">
+                        <h3 class="text-2xl font-bold mb-6 text-center">Paso 1: Cuéntanos sobre tu vehículo</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div><label for="car-make"
+                                    class="block text-sm font-medium text-gray-700">Marca</label><select id="car-make"
+                                    class="mt-1 block w-full p-3 border border-gray-300 rounded-md">
+                                    <option>Selecciona una marca</option>
+                                    <option>Audi</option>
+                                    <option>BMW</option>
+                                    <option>Mercedes-Benz</option>
+                                    <option>Porsche</option>
+                                </select></div>
+                            <div><label for="car-model"
+                                    class="block text-sm font-medium text-gray-700">Modelo</label><input type="text"
+                                    id="car-model" placeholder="Ej: Q5"
+                                    class="mt-1 block w-full p-3 border border-gray-300 rounded-md"></div>
+                            <div><label for="car-year" class="block text-sm font-medium text-gray-700">Año</label><input
+                                    type="number" id="car-year" placeholder="Ej: 2022"
+                                    class="mt-1 block w-full p-3 border border-gray-300 rounded-md"></div>
+                            <div><label for="car-mileage" class="block text-sm font-medium text-gray-700">Kilometraje
+                                    (km)</label><input type="number" id="car-mileage" placeholder="Ej: 15000"
+                                    class="mt-1 block w-full p-3 border border-gray-300 rounded-md"></div>
+                        </div>
+                        <div class="mt-8 text-center"><button
+                                class="next-btn bg-blue-600 text-white font-bold px-10 py-3 rounded-lg">Obtener
+                                Valoración</button></div>
+                    </div>
+
+                    <!-- Step 2: Condición y Fotos -->
+                    <div id="step-2" class="step-content">
+                        <div class="text-center mb-8">
+                            <h3 class="text-2xl font-bold">Valoración Estimada:</h3>
+                            <p id="valuation-result" class="text-4xl font-extrabold text-blue-600 mt-2">$45,000 -
+                                $48,000</p>
+                            <p class="text-sm text-gray-500 mt-1">La oferta final dependerá de la inspección física.</p>
+                        </div>
+                        <h3 class="text-xl font-bold mb-6 text-center">Paso 2: Sube las fotos de tu auto</h3>
+                        <p class="text-center text-gray-500 mb-6 -mt-4">Fotos claras nos ayudan a darte la mejor oferta
+                            posible.</p>
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                            <div
+                                class="photo-slot relative aspect-video rounded-lg flex flex-col items-center justify-center text-center p-2">
+                                <i data-lucide="camera" class="w-8 h-8 text-gray-400 mb-2"></i>
+                                <p class="text-sm font-semibold text-gray-600">Foto Frontal</p><input type="file"
+                                    class="absolute inset-0 opacity-0 cursor-pointer">
+                            </div>
+                            <div
+                                class="photo-slot relative aspect-video rounded-lg flex flex-col items-center justify-center text-center p-2">
+                                <i data-lucide="camera" class="w-8 h-8 text-gray-400 mb-2"></i>
+                                <p class="text-sm font-semibold text-gray-600">Foto Trasera</p><input type="file"
+                                    class="absolute inset-0 opacity-0 cursor-pointer">
+                            </div>
+                            <div
+                                class="photo-slot relative aspect-video rounded-lg flex flex-col items-center justify-center text-center p-2">
+                                <i data-lucide="camera" class="w-8 h-8 text-gray-400 mb-2"></i>
+                                <p class="text-sm font-semibold text-gray-600">Foto Lateral</p><input type="file"
+                                    class="absolute inset-0 opacity-0 cursor-pointer">
+                            </div>
+                            <div
+                                class="photo-slot relative aspect-video rounded-lg flex flex-col items-center justify-center text-center p-2">
+                                <i data-lucide="camera" class="w-8 h-8 text-gray-400 mb-2"></i>
+                                <p class="text-sm font-semibold text-gray-600">Interior (Tablero)</p><input type="file"
+                                    class="absolute inset-0 opacity-0 cursor-pointer">
+                            </div>
+                            <div
+                                class="photo-slot relative aspect-video rounded-lg flex flex-col items-center justify-center text-center p-2">
+                                <i data-lucide="camera" class="w-8 h-8 text-gray-400 mb-2"></i>
+                                <p class="text-sm font-semibold text-gray-600">Odómetro</p><input type="file"
+                                    class="absolute inset-0 opacity-0 cursor-pointer">
+                            </div>
+                            <div
+                                class="photo-slot relative aspect-video rounded-lg flex flex-col items-center justify-center text-center p-2">
+                                <i data-lucide="camera" class="w-8 h-8 text-gray-400 mb-2"></i>
+                                <p class="text-sm font-semibold text-gray-600">Motor</p><input type="file"
+                                    class="absolute inset-0 opacity-0 cursor-pointer">
+                            </div>
+                        </div>
+                        <div class="mt-8 flex justify-between"><button
+                                class="prev-btn bg-gray-200 text-gray-800 font-bold px-10 py-3 rounded-lg">Atrás</button><button
+                                class="next-btn bg-blue-600 text-white font-bold px-10 py-3 rounded-lg">Siguiente</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Contacto -->
+                    <div id="step-3" class="step-content">
+                        <h3 class="text-2xl font-bold mb-6 text-center">Paso 3: Tus datos de contacto</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div><label for="seller-name" class="block text-sm font-medium text-gray-700">Nombre
+                                    Completo</label><input type="text" id="seller-name"
+                                    class="mt-1 block w-full p-3 border border-gray-300 rounded-md"></div>
+                            <div><label for="seller-phone" class="block text-sm font-medium text-gray-700">Teléfono
+                                    (WhatsApp)</label><input type="tel" id="seller-phone"
+                                    class="mt-1 block w-full p-3 border border-gray-300 rounded-md"></div>
+                            <div class="md:col-span-2"><label for="seller-email"
+                                    class="block text-sm font-medium text-gray-700">Correo Electrónico</label><input
+                                    type="email" id="seller-email"
+                                    class="mt-1 block w-full p-3 border border-gray-300 rounded-md"></div>
+                        </div>
+                        <div class="mt-8 flex justify-between"><button
+                                class="prev-btn bg-gray-200 text-gray-800 font-bold px-10 py-3 rounded-lg">Atrás</button><button
+                                class="next-btn bg-blue-600 text-white font-bold px-10 py-3 rounded-lg">Revisar y
+                                Enviar</button></div>
+                    </div>
+
+                    <!-- Step 4: Finalizar -->
+                    <div id="step-4" class="step-content text-center">
+                        <i data-lucide="check-circle-2" class="w-20 h-20 text-green-500 mx-auto mb-4"></i>
+                        <h3 class="text-2xl font-bold mb-4">¡Gracias! Hemos recibido tus datos.</h3>
+                        <p class="text-gray-600 max-w-lg mx-auto">Uno de nuestros asesores expertos se pondrá en
+                            contacto contigo en las próximas 24 horas para coordinar la inspección de tu vehículo y
+                            confirmar la oferta. ¡Estás a un paso de vender tu auto!</p>
+                        <div class="mt-8"><a href="#"
+                                class="bg-blue-600 text-white font-bold px-10 py-3 rounded-lg">Volver al Inicio</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonios de Vendedores -->
+        <section class="py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Vendedores Satisfechos</h2>
+                    <p class="text-lg text-gray-600 mt-2">No solo lo decimos nosotros. Esto es lo que nuestros clientes
+                        opinan.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    <div class="bg-white p-8 rounded-xl shadow-lg">
+                        <p class="text-gray-700 mb-4">"El proceso fue increíblemente rápido y profesional. Me dieron un
+                            precio justo por mi camioneta y se encargaron de todo el papeleo. Lo recomiendo al 100%."
+                        </p>
+                        <div class="flex items-center"><img src="https://placehold.co/50x50/e2e8f0/334155?text=JP"
+                                class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <p class="font-bold text-gray-900">Juan Pérez</p>
+                                <p class="text-sm text-gray-500">Vendió su BMW X5</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-lg">
+                        <p class="text-gray-700 mb-4">"Odiaba la idea de tener que lidiar con compradores y regateos.
+                            Autosell hizo todo por mí. Dejé mi auto, firmé los papeles y recibí mi dinero. Así de
+                            simple."</p>
+                        <div class="flex items-center"><img src="https://placehold.co/50x50/e2e8f0/334155?text=AC"
+                                class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <p class="font-bold text-gray-900">Ana Lucía Campos</p>
+                                <p class="text-sm text-gray-500">Vendió su Audi A4</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+
+            const steps = document.querySelectorAll('.step-content');
+            const progressBar = document.getElementById('progress-bar');
+            let currentStep = 0;
+            const progressValues = ['25%', '50%', '75%', '100%'];
+
+            function showStep(stepIndex) {
+                steps.forEach((step, index) => {
+                    const isActive = index === stepIndex;
+                    if (isActive) {
+                        step.classList.add('active');
+                        anime({
+                            targets: step,
+                            opacity: [0, 1],
+                            translateY: [20, 0],
+                            duration: 500,
+                            easing: 'easeOutCubic'
+                        });
+                    } else {
+                        step.classList.remove('active');
+                    }
+                });
+                progressBar.style.width = progressValues[stepIndex];
+            }
+
+            document.querySelectorAll('.next-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    if (currentStep < steps.length - 1) {
+                        currentStep++;
+                        showStep(currentStep);
+                    }
+                });
+            });
+
+            document.querySelectorAll('.prev-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    if (currentStep > 0) {
+                        currentStep--;
+                        showStep(currentStep);
+                    }
+                });
+            });
+
+            // Drag and drop para fotos
+            document.querySelectorAll('.photo-slot').forEach(slot => {
+                const input = slot.querySelector('input[type="file"]');
+                slot.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    slot.classList.add('dragging');
+                });
+                slot.addEventListener('dragleave', () => slot.classList.remove('dragging'));
+                slot.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    slot.classList.remove('dragging');
+                    if (e.dataTransfer.files.length) {
+                        input.files = e.dataTransfer.files;
+                        displayImage(input);
+                    }
+                });
+                input.addEventListener('change', () => displayImage(input));
+            });
+
+            function displayImage(input) {
+                const slot = input.parentElement;
+                const file = input.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        let img = slot.querySelector('img');
+                        if (!img) {
+                            img = document.createElement('img');
+                            slot.appendChild(img);
+                        }
+                        img.src = e.target.result;
+                        slot.querySelector('i').style.display = 'none';
+                        slot.querySelector('p').style.display = 'none';
+                    };
+                    reader.readAsDataURL(file);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

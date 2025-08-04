@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autosell.pe - Contacto</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+        }
+
+        .faq-item .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 200px;
+            /* Adjust as needed */
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        .faq-item .icon-rotate {
+            transition: transform 0.4s ease;
+        }
+
+        .faq-item.open .icon-rotate {
+            transform: rotate(45deg);
+        }
+
+        .time-slot.selected {
+            background-color: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+
+        .location-btn.selected {
+            border-color: #3b82f6;
+            background-color: #eff6ff;
+            box-shadow: 0 0 0 2px #3b82f6;
+        }
+    </style>
+</head>
+
+<body class="text-gray-800">
+
+    <!-- Contenedor Principal -->
+    <div class="w-full">
+
+         <!-- Header -->
+         <header class="bg-white/80 backdrop-blur-sm shadow-md sticky top-0 z-50">
+            <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+                <a href="/" class="text-2xl font-bold text-gray-900">
+                    Auto<span class="text-blue-600">sell</span>
+                </a>
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="/comprar.html" class="nav-link text-gray-700 hover:text-blue-600 font-medium">Comprar</a>
+                    <a href="/vender.html" class="nav-link text-gray-700 hover:text-blue-600 font-medium">Vender</a>
+                    <a href="/financiamiento.html" class="nav-link text-gray-700 hover:text-blue-600 font-medium">Financiamiento</a>
+                    <a href="/nosotros.html" class="nav-link text-gray-700 hover:text-blue-600 font-medium">Sobre Nosotros</a>
+                    <a href="/blog.html" class="nav-link text-gray-700 hover:text-blue-600 font-medium">Blog</a>
+                </div>
+                <div class="hidden lg:flex items-center space-x-4">
+                    <a href="/contacto.html" class="text-blue-600 font-semibold border-b-2 border-blue-600">Contacto</a>
+                    <a href="/login.html"
+                        class="bg-blue-600 text-white font-semibold px-5 py-2 rounded-lg hover:bg-blue-700 transition-colors">Iniciar
+                        Sesión</a>
+                </div>
+                <div class="lg:hidden">
+                    <button id="menu-btn" class="text-gray-700 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+            </nav>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden lg:hidden px-6 pb-4">
+                <a href="/comprar.html" class="block py-2 text-gray-700 hover:text-blue-600">Comprar</a>
+                <a href="/vender.html" class="block py-2 text-gray-700 hover:text-blue-600">Vender</a>
+                <a href="/financiamiento.html" class="block py-2 text-gray-700 hover:text-blue-600">Financiamiento</a>
+                <a href="/nosotros.html" class="block py-2 text-gray-700 hover:text-blue-600">Sobre Nosotros</a>
+                <a href="/blog.html" class="block py-2 text-gray-700 hover:text-blue-600">Blog</a>
+                <a href="/contacto.html" class="block py-2 text-gray-700 hover:text-blue-600">Contacto</a>
+                <a href="/login.html"
+                    class="block mt-2 bg-blue-600 text-white text-center font-semibold px-5 py-2 rounded-lg hover:bg-blue-700 transition-colors">Iniciar
+                    Sesión</a>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="bg-white">
+            <div class="container mx-auto px-6 py-16 md:py-24 text-center">
+                <h1 class="text-4xl md:text-6xl font-extrabold text-gray-900 animate-on-scroll">Estamos aquí para
+                    ayudarte</h1>
+                <p class="text-lg md:text-xl text-gray-600 mt-4 max-w-3xl mx-auto animate-on-scroll" data-delay="100">
+                    ¿Tienes alguna pregunta o quieres agendar una cita? No dudes en contactarnos. Nuestro equipo de
+                    expertos está listo para atenderte.</p>
+            </div>
+        </section>
+
+        <!-- Formulario y Datos de Contacto -->
+        <section class="py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                <div class="grid lg:grid-cols-5 gap-12">
+                    <!-- Formulario de Contacto -->
+                    <div class="lg:col-span-3 bg-white p-8 rounded-2xl shadow-lg border animate-on-scroll">
+                        <h2 class="text-2xl font-bold mb-6">Envíanos un mensaje</h2>
+                        <form class="space-y-6">
+                            <div class="grid sm:grid-cols-2 gap-6">
+                                <div><label for="name" class="block text-sm font-medium text-gray-700">Nombre
+                                        Completo</label><input type="text" id="name"
+                                        class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                                </div>
+                                <div><label for="email" class="block text-sm font-medium text-gray-700">Correo
+                                        Electrónico</label><input type="email" id="email"
+                                        class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                                </div>
+                            </div>
+                            <div><label for="subject"
+                                    class="block text-sm font-medium text-gray-700">Asunto</label><select id="subject"
+                                    class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                                    <option>Consulta sobre un vehículo</option>
+                                    <option>Quiero vender mi auto</option>
+                                    <option>Información de financiamiento</option>
+                                    <option>Consulta general</option>
+                                </select></div>
+                            <div><label for="message"
+                                    class="block text-sm font-medium text-gray-700">Mensaje</label><textarea
+                                    id="message" rows="5"
+                                    class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"></textarea>
+                            </div>
+                            <div><button type="submit"
+                                    class="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors">Enviar
+                                    Mensaje</button></div>
+                        </form>
+                    </div>
+                    <!-- Información de Contacto Directo -->
+                    <div class="lg:col-span-2 animate-on-scroll" data-delay="200">
+                        <h2 class="text-2xl font-bold mb-6">Contacto Directo</h2>
+                        <div class="space-y-6">
+                            <a href="tel:+51987654321" class="flex items-center gap-4 group">
+                                <div class="bg-blue-100 p-3 rounded-full"><i data-lucide="phone"
+                                        class="w-6 h-6 text-blue-600"></i></div>
+                                <div>
+                                    <p
+                                        class="font-semibold text-lg text-gray-900 group-hover:text-blue-600 transition-colors">
+                                        (+51) 987 654 321</p>
+                                    <p class="text-gray-500">Llámanos para una atención inmediata</p>
+                                </div>
+                            </a>
+                            <a href="https://wa.me/51987654321" target="_blank" class="flex items-center gap-4 group">
+                                <div class="bg-green-100 p-3 rounded-full"><i data-lucide="message-circle"
+                                        class="w-6 h-6 text-green-600"></i></div>
+                                <div>
+                                    <p
+                                        class="font-semibold text-lg text-gray-900 group-hover:text-green-600 transition-colors">
+                                        Chatea por WhatsApp</p>
+                                    <p class="text-gray-500">Ideal para consultas rápidas</p>
+                                </div>
+                            </a>
+                            <a href="mailto:contacto@autosell.pe" class="flex items-center gap-4 group">
+                                <div class="bg-gray-200 p-3 rounded-full"><i data-lucide="mail"
+                                        class="w-6 h-6 text-gray-700"></i></div>
+                                <div>
+                                    <p
+                                        class="font-semibold text-lg text-gray-900 group-hover:text-blue-600 transition-colors">
+                                        contacto@autosell.pe</p>
+                                    <p class="text-gray-500">Para consultas detalladas</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="mt-8 pt-6 border-t">
+                            <h3 class="font-bold text-lg mb-3">Horarios de Atención</h3>
+                            <p class="flex justify-between"><span>Lunes a Viernes:</span> <span
+                                    class="font-semibold">9:00 am - 8:00 pm</span></p>
+                            <p class="flex justify-between mt-1"><span>Sábados:</span> <span class="font-semibold">9:00
+                                    am - 7:00 pm</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Widget para Agendar Cita -->
+        <section class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12 animate-on-scroll">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Agenda una Visita</h2>
+                    <p class="text-lg text-gray-600 mt-2">Elige el día y la hora que más te convenga. ¡Te esperamos!</p>
+                </div>
+                <div class="max-w-3xl mx-auto bg-white p-8 rounded-2xl shadow-lg border animate-on-scroll">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="font-semibold mb-3">1. Elige una tienda</h3>
+                            <div class="space-y-3">
+                                <button class="location-btn w-full text-left p-4 border rounded-lg transition-all"
+                                    data-location="surco"><span class="font-bold">Sede Surco</span><br><span
+                                        class="text-sm text-gray-500">Av. El Polo 789</span></button>
+                                <button class="location-btn w-full text-left p-4 border rounded-lg transition-all"
+                                    data-location="san-isidro"><span class="font-bold">Sede San Isidro</span><br><span
+                                        class="text-sm text-gray-500">Av. Pardo y Aliaga 550</span></button>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold mb-3">2. Elige fecha y hora</h3>
+                            <input type="date" class="w-full p-3 border rounded-lg mb-4">
+                            <div class="grid grid-cols-3 gap-2">
+                                <button class="time-slot p-2 border rounded-lg transition-colors">09:00</button>
+                                <button class="time-slot p-2 border rounded-lg transition-colors">10:00</button>
+                                <button class="time-slot p-2 border rounded-lg transition-colors">11:00</button>
+                                <button class="time-slot p-2 border rounded-lg transition-colors">14:00</button>
+                                <button class="time-slot p-2 border rounded-lg transition-colors">15:00</button>
+                                <button class="time-slot p-2 border rounded-lg transition-colors">16:00</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-8"><button
+                            class="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors">Confirmar
+                            Cita</button></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Preguntas Frecuentes (FAQ) -->
+        <section class="py-16 md:py-24">
+            <div class="container mx-auto px-6 max-w-4xl">
+                <div class="text-center mb-12 animate-on-scroll">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Preguntas Frecuentes</h2>
+                    <p class="text-lg text-gray-600 mt-2">Resolvemos tus dudas más comunes para agilizar tu proceso.</p>
+                </div>
+                <div class="space-y-4 animate-on-scroll">
+                    <div class="faq-item bg-white rounded-lg border border-gray-200 overflow-hidden">
+                        <button
+                            class="faq-question w-full flex justify-between items-center text-left p-6 font-semibold text-lg"><span
+                                class="text-gray-900">¿Qué tipo de autos venden?</span><i data-lucide="plus"
+                                class="w-6 h-6 text-blue-600 icon-rotate"></i></button>
+                        <div class="faq-answer px-6 text-gray-600">
+                            <p>Nos especializamos en vehículos seminuevos de alta gama. Nuestro inventario se centra en
+                                marcas como Audi, BMW, Mercedes-Benz, Porsche, entre otras. Todos nuestros autos pasan
+                                por una rigurosa inspección de 150 puntos antes de ser puestos a la venta.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item bg-white rounded-lg border border-gray-200 overflow-hidden">
+                        <button
+                            class="faq-question w-full flex justify-between items-center text-left p-6 font-semibold text-lg"><span
+                                class="text-gray-900">¿Qué necesito para el financiamiento?</span><i data-lucide="plus"
+                                class="w-6 h-6 text-blue-600 icon-rotate"></i></button>
+                        <div class="faq-answer px-6 text-gray-600">
+                            <p>Trabajamos con las principales entidades financieras. Generalmente, necesitarás tu DNI,
+                                sustento de ingresos y no tener un mal historial crediticio. Nuestro equipo de asesores
+                                te guiará en todo el proceso para encontrar la mejor opción para ti.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item bg-white rounded-lg border border-gray-200 overflow-hidden">
+                        <button
+                            class="faq-question w-full flex justify-between items-center text-left p-6 font-semibold text-lg"><span
+                                class="text-gray-900">¿Puedo dejar mi auto actual en parte de pago?</span><i
+                                data-lucide="plus" class="w-6 h-6 text-blue-600 icon-rotate"></i></button>
+                        <div class="faq-answer px-6 text-gray-600">
+                            <p>¡Sí! Aceptamos vehículos en parte de pago, previa inspección y valoración por parte de
+                                nuestro equipo técnico. Es una excelente manera de facilitar la compra de tu próximo
+                                auto con nosotros.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+
+            // --- ANIMACIONES ---
+            const scrollElements = document.querySelectorAll('.animate-on-scroll');
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        anime({
+                            targets: entry.target,
+                            opacity: [0, 1],
+                            translateY: [20, 0],
+                            duration: 800,
+                            delay: entry.target.dataset.delay || 0,
+                            easing: 'easeOutExpo'
+                        });
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            scrollElements.forEach(el => observer.observe(el));
+
+            // --- FAQ Accordion ---
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    const wasOpen = item.classList.contains('open');
+                    faqItems.forEach(i => i.classList.remove('open'));
+                    if (!wasOpen) {
+                        item.classList.add('open');
+                    }
+                });
+            });
+
+            // --- Appointment Widget ---
+            const timeSlots = document.querySelectorAll('.time-slot');
+            timeSlots.forEach(slot => {
+                slot.addEventListener('click', () => {
+                    timeSlots.forEach(s => s.classList.remove('selected'));
+                    slot.classList.add('selected');
+                });
+            });
+
+            const locationBtns = document.querySelectorAll('.location-btn');
+            locationBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    locationBtns.forEach(b => b.classList.remove('selected'));
+                    btn.classList.add('selected');
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

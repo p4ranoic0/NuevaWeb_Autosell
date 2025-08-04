@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autosell.pe - Iniciar Sesión</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+
+        .login-container>* {
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body class="text-gray-800">
+
+    <!-- Contenedor Principal -->
+    <div class="min-h-screen flex">
+
+        <!-- Columna Izquierda: Imagen y Branding -->
+        <div class="hidden lg:block w-1/2 relative">
+            <img src="https://placehold.co/1000x1200/0b2447/a5d7e8?text=Autosell"
+                alt="[Imagen del interior de un auto de lujo]" class="absolute inset-0 w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black/50"></div>
+            <div class="relative flex flex-col justify-end h-full p-12 text-white">
+                <a href="/" class="text-3xl font-bold mb-4">Auto<span class="text-blue-400">sell</span></a>
+                <h1 class="text-4xl font-bold leading-tight">Tu próximo auto te está esperando.</h1>
+                <p class="text-lg text-gray-300 mt-4">Inicia sesión para guardar tus vehículos favoritos, gestionar tus
+                    ventas y recibir alertas personalizadas.</p>
+            </div>
+        </div>
+
+        <!-- Columna Derecha: Formulario de Login -->
+        <div class="w-full lg:w-1/2 flex items-center justify-center p-8">
+            <div class="max-w-md w-full">
+                <div class="login-container">
+                    <h2 class="text-3xl font-bold text-gray-900 text-center">Bienvenido de Vuelta</h2>
+                    <p class="text-gray-600 text-center mt-2">Inicia sesión para continuar.</p>
+
+                    <div class="mt-8 space-y-4">
+                        <button
+                            class="w-full flex items-center justify-center gap-3 py-3 px-4 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+                            <svg class="w-5 h-5" viewBox="0 0 48 48">
+                                <path fill="#FFC107"
+                                    d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z">
+                                </path>
+                                <path fill="#FF3D00"
+                                    d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z">
+                                </path>
+                                <path fill="#4CAF50"
+                                    d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z">
+                                </path>
+                                <path fill="#1976D2"
+                                    d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.574l6.19,5.238C42.022,35.244,44,30.036,44,24C44,22.659,43.862,21.35,43.611,20.083z">
+                                </path>
+                            </svg>
+                            <span class="font-semibold text-gray-700">Continuar con Google</span>
+                        </button>
+                    </div>
+
+                    <div class="mt-6 flex items-center">
+                        <div class="flex-grow border-t border-gray-300"></div>
+                        <span class="mx-4 text-sm text-gray-500">O inicia sesión con tu correo</span>
+                        <div class="flex-grow border-t border-gray-300"></div>
+                    </div>
+
+                    <form class="mt-6 space-y-6">
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700">Correo
+                                Electrónico</label>
+                            <div class="mt-1">
+                                <input id="email" name="email" type="email" autocomplete="email" required
+                                    class="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between items-center">
+                                <label for="password" class="block text-sm font-medium text-gray-700">Contraseña</label>
+                                <a href="#" class="text-sm font-medium text-blue-600 hover:text-blue-500">¿Olvidaste tu
+                                    contraseña?</a>
+                            </div>
+                            <div class="mt-1">
+                                <input id="password" name="password" type="password" autocomplete="current-password"
+                                    required
+                                    class="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                        </div>
+
+                        <div>
+                            <button type="submit"
+                                class="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors">
+                                Iniciar Sesión
+                            </button>
+                        </div>
+                    </form>
+
+                    <p class="mt-8 text-center text-sm text-gray-600">
+                        ¿No tienes una cuenta?
+                        <a href="#" class="font-medium text-blue-600 hover:text-blue-500">Regístrate aquí</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+
+            // Animación de entrada del formulario
+            anime({
+                targets: '.login-container > *',
+                opacity: [0, 1],
+                translateY: [20, 0],
+                delay: anime.stagger(100, { start: 200 }),
+                duration: 800,
+                easing: 'easeOutExpo'
+            });
+        });
+    </script>
+</body>
+
+</html>

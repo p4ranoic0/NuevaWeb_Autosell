@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: Hoja de Ruta Estratégica para Autosell.pe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- 
+    Palette Selection: Brilliant Blues (#0B2447, #19376D, #576CBC, #A5D7E8)
+    Narrative Plan:
+    1.  Introduction: Hook with the core problem - a disconnect between social media presence and web experience.
+    2.  Section 1: The Diagnosis - Visualize the key missing website features (Content Gaps).
+    3.  Section 2: Competitive Landscape - A clear feature comparison against competitors (Neoauto, Autopia).
+    4.  Section 3: User Journey Friction - Visualize the pain points for both buyers and sellers using flow diagrams.
+    5.  Section 4: The Missing Pillar - Highlight the critical absence of financing tools.
+    6.  Section 5: The Roadmap - Present the prioritized action plan as a timeline.
+    7.  Conclusion: Summarize the transformation potential.
+
+    Visualization Choices:
+    -   Content Gaps: Goal=Compare. Chosen=Bar Chart (Chart.js). Justification=Effectively compares the presence/absence of key features on the current site. NO SVG.
+    -   Competitive Matrix: Goal=Organize/Compare. Chosen=Styled HTML Table. Justification=Best way to display a direct feature-by-feature comparison. NO SVG.
+    -   User Journey Friction: Goal=Organize. Chosen=Flow Chart (Styled HTML/CSS). Justification=Clearly illustrates the problematic steps in the user process. NO SVG, NO MERMAID JS.
+    -   Roadmap: Goal=Change/Organize. Chosen=Timeline (Styled HTML/CSS). Justification=Effectively shows the phased implementation plan over time. NO SVG.
+    -   Financing Pillar: Goal=Inform. Chosen=Donut Chart (Chart.js) + Big Number. Justification=Highlights the massive gap (100% missing functionality) in a visually striking way. NO SVG.
+    -   Confirmation: NEITHER Mermaid JS NOR SVG were used.
+    -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+            /* A lighter shade from the palette */
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -31px;
+            top: 5px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #19376D;
+            border: 4px solid #A5D7E8;
+        }
+    </style>
+</head>
+
+<body class="text-[#0B2447]">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <!-- Header -->
+        <header class="text-center mb-12 md:mb-16">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-[#0B2447] mb-4">Hoja de Ruta Estratégica: Autosell.pe
+            </h1>
+            <p class="text-lg md:text-xl text-[#19376D] max-w-3xl mx-auto">Un análisis visual para transformar un activo
+                digital en un motor de crecimiento, cerrando la brecha entre una vibrante presencia social y una
+                experiencia web deficiente.</p>
+        </header>
+
+        <!-- Main Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <!-- Section 1: The Diagnosis -->
+            <div class="md:col-span-2 lg:col-span-1 bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-[#19376D] mb-4">1. Diagnóstico: Brechas de Contenido Críticas</h2>
+                <p class="text-[#576CBC] mb-6">La arquitectura de información actual es minimalista hasta el punto de
+                    ser deficiente, omitiendo secciones que son estándar en la industria y vitales para construir la
+                    confianza del usuario.</p>
+                <div class="chart-container h-64">
+                    <canvas id="contentGapsChart"></canvas>
+                </div>
+                <p class="text-center text-sm text-[#576CBC] mt-4">La ausencia de estas páginas clave obliga a los
+                    usuarios a abandonar el sitio para encontrar respuestas, erosionando la confianza desde el primer
+                    contacto.</p>
+            </div>
+
+            <!-- Section 2: Competitive Landscape -->
+            <div class="md:col-span-2 bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-[#19376D] mb-4">2. Panorama Competitivo: Una Desventaja Funcional
+                </h2>
+                <p class="text-[#576CBC] mb-6">Autosell.pe compite en un mercado maduro. Un análisis comparativo revela
+                    una desventaja significativa en características esenciales frente a los líderes del mercado como
+                    Neoauto y especialistas en confianza como Autopia.</p>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm">
+                        <thead class="bg-[#A5D7E8] text-[#0B2447]">
+                            <tr>
+                                <th class="p-3 rounded-tl-lg">Característica</th>
+                                <th class="text-center p-3">Autosell.pe</th>
+                                <th class="text-center p-3">Neoauto</th>
+                                <th class="text-center p-3 rounded-tr-lg">Autopia</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-gray-200">
+                                <td class="p-3 font-semibold">Calculadora de Financiamiento</td>
+                                <td class="text-center p-3 text-red-500 font-bold text-lg">✗</td>
+                                <td class="text-center p-3 text-green-500 font-bold text-lg">✓</td>
+                                <td class="text-center p-3 text-red-500 font-bold text-lg">✗</td>
+                            </tr>
+                            <tr class="border-b border-gray-200 bg-gray-50">
+                                <td class="p-3 font-semibold">Informe de Historial Integrado</td>
+                                <td class="text-center p-3 text-red-500 font-bold text-lg">✗</td>
+                                <td class="text-center p-3 text-green-500 font-bold text-lg">✓</td>
+                                <td class="text-center p-3 text-green-500 font-bold text-lg">✓</td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="p-3 font-semibold">Galería de Múltiples Fotos/Video</td>
+                                <td class="text-center p-3 text-red-500 font-bold text-lg">✗</td>
+                                <td class="text-center p-3 text-green-500 font-bold text-lg">✓</td>
+                                <td class="text-center p-3 text-green-500 font-bold text-lg">✓</td>
+                            </tr>
+                            <tr class="bg-gray-50">
+                                <td class="p-3 font-semibold rounded-bl-lg">Blog / Contenido de Recursos</td>
+                                <td class="text-center p-3 text-red-500 font-bold text-lg">✗</td>
+                                <td class="text-center p-3 text-green-500 font-bold text-lg">✓</td>
+                                <td class="text-center p-3 rounded-br-lg text-green-500 font-bold text-lg">✓</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Section 3: User Journey Friction -->
+            <div class="lg:col-span-3 bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-[#19376D] mb-6 text-center">3. Fricción en los Recorridos de Usuario
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="font-bold text-lg mb-4 text-center">El Viaje del Comprador: Callejones sin Salida
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-4 p-3 bg-gray-50 rounded-lg">
+                                <span
+                                    class="flex-shrink-0 bg-[#A5D7E8] text-[#0B2447] w-8 h-8 rounded-full flex items-center justify-center font-bold">1</span>
+                                <p>Usuario atraído por video en TikTok que menciona "crédito vehicular".</p>
+                            </div>
+                            <div class="pl-12 text-2xl text-center text-gray-400">▼</div>
+                            <div class="flex items-center gap-4 p-3 bg-gray-50 rounded-lg">
+                                <span
+                                    class="flex-shrink-0 bg-[#A5D7E8] text-[#0B2447] w-8 h-8 rounded-full flex items-center justify-center font-bold">2</span>
+                                <p>Aterriza en una PDP con 1 foto y sin información de financiamiento.</p>
+                            </div>
+                            <div class="pl-12 text-2xl text-center text-red-400">▼</div>
+                            <div class="flex items-center gap-4 p-3 bg-red-100 border border-red-300 rounded-lg">
+                                <span
+                                    class="flex-shrink-0 bg-red-500 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">!</span>
+                                <p class="font-semibold text-red-700">Fuga del Embudo: El usuario abandona para buscar
+                                    financiamiento en otro lugar.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg mb-4 text-center">El Viaje del Vendedor: Barreras de Confianza</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-4 p-3 bg-gray-50 rounded-lg">
+                                <span
+                                    class="flex-shrink-0 bg-[#A5D7E8] text-[#0B2447] w-8 h-8 rounded-full flex items-center justify-center font-bold">1</span>
+                                <p>Vendedor potencial llega a un formulario largo y ambiguo.</p>
+                            </div>
+                            <div class="pl-12 text-2xl text-center text-gray-400">▼</div>
+                            <div class="flex items-center gap-4 p-3 bg-gray-50 rounded-lg">
+                                <span
+                                    class="flex-shrink-0 bg-[#A5D7E8] text-[#0B2447] w-8 h-8 rounded-full flex items-center justify-center font-bold">2</span>
+                                <p>Duda sobre "Precio Referencial" y no tiene guía para subir fotos.</p>
+                            </div>
+                            <div class="pl-12 text-2xl text-center text-red-400">▼</div>
+                            <div class="flex items-center gap-4 p-3 bg-red-100 border border-red-300 rounded-lg">
+                                <span
+                                    class="flex-shrink-0 bg-red-500 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">!</span>
+                                <p class="font-semibold text-red-700">Abandono del Formulario: La incertidumbre y
+                                    fricción disuaden de completar el proceso.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 4: The Missing Pillar -->
+            <div
+                class="md:col-span-1 bg-white rounded-lg shadow-md p-6 flex flex-col items-center justify-center text-center">
+                <h2 class="text-2xl font-bold text-[#19376D] mb-4">4. El Pilar Ausente: Financiamiento</h2>
+                <p class="text-[#576CBC] mb-6">A pesar de ser un CTA clave en redes sociales, la funcionalidad de
+                    financiamiento es 100% inexistente en la web, cediendo clientes y control a la competencia.</p>
+                <div class="chart-container h-48">
+                    <canvas id="financingGapChart"></canvas>
+                </div>
+                <p class="text-2xl font-bold text-red-500 mt-4">0 Herramientas</p>
+                <p class="text-[#576CBC]">de financiamiento disponibles para el usuario.</p>
+            </div>
+
+            <!-- Section 5: The Roadmap -->
+            <div class="md:col-span-2 bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-[#19376D] mb-6">5. Hoja de Ruta Accionable</h2>
+                <div class="relative border-l-2 border-dashed border-gray-300 ml-4 pl-8">
+                    <div class="timeline-item mb-8">
+                        <h3 class="font-bold text-[#0B2447] text-lg">Fase 1 (Inmediata): Victorias Rápidas de Confianza
+                        </h3>
+                        <p class="text-[#576CBC] text-sm">Implementar cambios de alto impacto y bajo esfuerzo para
+                            construir credibilidad fundamental.</p>
+                        <ul class="list-disc list-inside text-[#19376D] mt-2 space-y-1">
+                            <li>Crear sección "Sobre Nosotros"</li>
+                            <li>Rediseñar CTAs en páginas de producto</li>
+                            <li>Integrar informes de historial (PDF)</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-item mb-8">
+                        <h3 class="font-bold text-[#0B2447] text-lg">Fase 2 (Corto Plazo): Optimización de Recorridos
+                        </h3>
+                        <p class="text-[#576CBC] text-sm">Mejorar los flujos de usuario clave y empezar a construir
+                            autoridad de marca.</p>
+                        <ul class="list-disc list-inside text-[#19376D] mt-2 space-y-1">
+                            <li>Mejorar formulario "Vende tu Auto" (multi-paso)</li>
+                            <li>Rediseñar PDP con galería de medios</li>
+                            <li>Lanzar Blog / Centro de Contenidos</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-item">
+                        <h3 class="font-bold text-[#0B2447] text-lg">Fase 3 (Mediano Plazo): Liderazgo del Nicho</h3>
+                        <p class="text-[#576CBC] text-sm">Construir funcionalidades avanzadas para competir directamente
+                            y liderar el segmento de alta gama.</p>
+                        <ul class="list-disc list-inside text-[#19376D] mt-2 space-y-1">
+                            <li>Construir el Hub de "Financiamiento" completo</li>
+                            <li>Rediseñar motor de búsqueda con colecciones</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const tooltipCallback = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function (tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                                return label.join(' ');
+                            }
+                            return label;
+                        }
+                    }
+                }
+            }
+        };
+
+        const processLabels = (labels) => {
+            return labels.map(label => {
+                if (label.length > 16) {
+                    const words = label.split(' ');
+                    let currentLine = '';
+                    const lines = [];
+                    words.forEach(word => {
+                        if ((currentLine + word).length > 16) {
+                            lines.push(currentLine.trim());
+                            currentLine = '';
+                        }
+                        currentLine += word + ' ';
+                    });
+                    lines.push(currentLine.trim());
+                    return lines;
+                }
+                return label;
+            });
+        };
+
+        // Chart 1: Content Gaps
+        const contentGapsCtx = document.getElementById('contentGapsChart').getContext('2d');
+        new Chart(contentGapsCtx, {
+            type: 'bar',
+            data: {
+                labels: processLabels(['Página de Financiamiento', 'Página Sobre Nosotros', 'Blog / Recursos', 'Página de Contacto']),
+                datasets: [{
+                    label: 'Presencia de la Característica',
+                    data: [0, 0, 0, 0],
+                    backgroundColor: '#576CBC',
+                    borderColor: '#19376D',
+                    borderWidth: 2,
+                    borderRadius: 4,
+                    barPercentage: 0.6,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y',
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        max: 1,
+                        display: false,
+                    },
+                    y: {
+                        ticks: {
+                            color: '#0B2447',
+                            font: {
+                                weight: 'bold'
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: tooltipCallback.plugins.tooltip
+                }
+            }
+        });
+
+        // Chart 2: Financing Gap
+        const financingGapCtx = document.getElementById('financingGapChart').getContext('2d');
+        new Chart(financingGapCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Funcionalidad Ausente'],
+                datasets: [{
+                    data: [100],
+                    backgroundColor: ['#E8A5A5'], // A contrasting red
+                    borderColor: ['#D16464'],
+                    borderWidth: 2,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '70%',
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: () => '100% de oportunidad perdida'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
