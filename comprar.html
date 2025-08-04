@@ -380,6 +380,16 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+
+              // --- Mobile Menu Toggle ---
+              const menuBtn = document.getElementById('menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (menuBtn && mobileMenu) {
+                menuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+            
             // --- DATA DE EJEMPLO ---
             const vehicleData = [
                 { id: 1, name: 'Audi Q5 2.0 TFSI', year: 2022, mileage: 15000, transmission: 'Automática', price: 48500, image: 'https://placehold.co/600x400/334155/ffffff?text=Audi+Q5', engine: '2.0L Turbo', fuel: 'Gasolina' },
